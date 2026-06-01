@@ -35,7 +35,7 @@ Colaboradores:
 
     public:
         //constructor Vehicle(int id){}
-        virtual ~Vehicle() {}
+        virtual ~Vehicle() = default;
         //virtual void MoveFoward() = 0;
         Color getColor();
         int getID();

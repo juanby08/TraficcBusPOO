@@ -1,7 +1,11 @@
 #ifndef MGAME_H
 #define MGAME_H
 
+#include "Vehicle.h"
+#include "Bus.h"
+#include "Car.h"
 #include <string>
+#include <vector>
 #include <utility>
 //#include "Game.h"
 using namespace std;
@@ -14,6 +18,7 @@ class MGame{
         bool finished;
         int busQuantity;
         int passengersQuantity;
+        std::vector<Vehicle*> vehiculos;
     
     //Métodos
     public:
@@ -24,6 +29,9 @@ class MGame{
         bool Finished() const;
         int getBusQuantity() const;
         int getPassengersQuantity() const;
+
+        std::vector<Vehicle*> vehicles;
+        std::vector<Color> passengerQueue;
 
         // Método que recibe el nombre del archivo txt
         void loadLevel(string filePath);

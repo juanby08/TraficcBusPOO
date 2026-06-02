@@ -4,56 +4,70 @@
  - Anyela Lineth Cabrera Ordoñez | Código: 202540031| anyela.cabrera@correounivalle.edu.co
 */
 
+//#include "Game.h"
 #include "MGame.h"
-//#include "Game.cpp"
-#include "Parser.cpp" 
+#include "Parser.h" 
 #include <iostream>
-#include <fstream> // Para leer los archivos planos de niveles
+#include <fstream>
+
 using namespace std;
 
-// Constructor
-MGame:: MGame(){
+MGame::MGame() {
     level = 1;
     finished = false;
     busQuantity = 0;
     passengersQuantity = 0;
+}
 
-    }
-
-// Método
 void MGame::loadLevel(string filePath) {
-    //ifstream file(filePath);
-    cout << "Cargando nivel " << filePath << endl;
-
-    // Abrir el archivo txt
+    cout << "Cargando nivel " << filePath << "..." << endl;
+    // Abrir el archivo plano
     ifstream file(filePath);
-    int row, columns; // Variables para almacenar los datos del nivel
-    file >> row >> columns; // Leer el número de filas y columnas del nivel
-    cout << "Se creo un tablero de " << row << " filas y " << columns << " columnas." << endl;
-
-    /*if (!file.is_open()) {
+    // Verificar que el archivo se abrió correctamente
+    if (!file.is_open()) {
         cout << "Error: No se pudo abrir " << filePath << endl;
         return;
-    }*/
-
-    //ciclo para leer vehiculos y pasajeros.... en espera
-    cout << "Nivel cargado exitosamente" << endl;
-
+    }
+    // Variables para almacenar temporalmente los datos del archivo
+    int row, columns;
+    file >> row >> columns; 
     string typeStr, colorStr, dirStr;
     int x, y, size;
 
-    // Bucle para leer los vehículos
+    // Leer los vehículos hasta encontrar el "-"
     while (file >> typeStr && typeStr != "-") {
         file >> colorStr >> x >> y >> dirStr >> size;
-
-        // Uso del traductor para convertir el texto a los tipos de tu juego
+        // Convertir los strings 
         Color vehicleColor = Parser::stringToColor(colorStr);
         Direction vehicleDir = Parser::stringToDirection(dirStr);
 
-        // Crar el vehículo usando los datos leídos 
-        cout << "Vehiculo procesado correctamente." << endl;
+        // Instanciar los objetos y agregarlos al vector de vehículos
+        if (typeStr == "BUS") {
+            // El constructor de Bus pide capacidad. Le pasamos 4 por defecto.
+            vehicles.push_back(new Bus(busQuantity, vehicleColor, {x, y}, vehicleDir, size, 4));
+            busQuantity++;
+        } 
+        else if (typeStr == "CAR") {
+            vehicles.push_back(new Car(busQuantity, vehicleColor, {x, y}, vehicleDir));
+            busQuantity++; 
+        }
     }
 
-    // Aquí iría la parte de los pasajeros 
+    
+    // Leer el "-" que separa los vehículos de la fila de pasajeros
+    string dummyStr; 
+    file >> dummyStr;
+
+    // Bucle para leer la fila de pasajeros y guardarla en la cola
+    while (file >> colorStr) {
+        Color passengerColor = Parser::stringToColor(colorStr);
+        passengerQueue.push_back(passengerColor);
+        passengersQuantity++;
+    }
+
+    cout << "Nivel cargado exitosamente." << endl;
+    cout << "Vehiculos creados: " << busQuantity << endl;
+    cout << "Pasajeros en fila: " << passengersQuantity << endl;
+
     file.close();
 }

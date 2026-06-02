@@ -137,11 +137,9 @@ void testCapacityOne()
     );
 
     assert(!bus.isFull());
-
     assert(bus.boardPassenger());
 
     assert(bus.isFull());
-
     assert(!bus.boardPassenger());
 
     std::cout << "testCapacityOne passed\n";

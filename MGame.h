@@ -9,19 +9,24 @@ using namespace std;
 // Nombre Clase
 class MGame{
     //Atributos
-    protected: 
+    private: 
         int level;
         bool finished;
         int busQuantity;
         int passengersQuantity;
     
-    //Metodos
+    //Métodos
     public:
+        MGame(); //constructor
+
+        //Getters
         int getLevel() const;
         bool Finished() const;
         int getBusQuantity() const;
         int getPassengersQuantity() const;
-        void loadLevel();
+
+        // Método que recibe el nombre del archivo txt
+        void loadLevel(string filePath);
 };
 
 #endif // MGAME_H

@@ -1,5 +1,6 @@
 #include "MGame.h"
 //#include "Game.cpp"
+#include <fstream> // Para leer los archivos planos de niveles
 #include <iostream>
 using namespace std;
 

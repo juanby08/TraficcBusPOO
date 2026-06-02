@@ -18,7 +18,8 @@ class MGame{
         bool finished;
         int busQuantity;
         int passengersQuantity;
-        std::vector<Vehicle*> vehiculos;
+        std::vector<Vehicle*> vehicles;
+        std::vector<Color> passengerQueue;
     
     //Métodos
     public:
@@ -29,9 +30,6 @@ class MGame{
         bool Finished() const;
         int getBusQuantity() const;
         int getPassengersQuantity() const;
-
-        std::vector<Vehicle*> vehicles;
-        std::vector<Color> passengerQueue;
 
         // Método que recibe el nombre del archivo txt
         void loadLevel(string filePath);

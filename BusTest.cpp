@@ -5,7 +5,7 @@
 
 NO SE INCLUIRA EN LA ENTREGA FINAL.
 
-Comando para probar los tests: g++ Vehicle.cpp Bus.cpp BusTest.cpp -o BusTest
+Comando para probar los tests: g++ Vehicle.cpp Bus.cpp Car.cpp BusTest.cpp -o BusTest
 
 */
 

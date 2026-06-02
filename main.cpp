@@ -1,7 +1,9 @@
 #include <iostream>
+#include "MGame.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "Halo" << std::endl;
+    MGame game;
+    // Cargar el nivel desde el archivo plano
+    game.loadLevel("level1.txt"); 
     return 0;
 }

@@ -13,6 +13,7 @@ Comando para probar los tests: g++ Vehicle.cpp Bus.cpp BusTest.cpp -o BusTest
 #include <iostream>
 
 #include "Bus.h"
+#include "Car.h"
 
 void testConstructor()
 {
@@ -146,6 +147,62 @@ void testCapacityOne()
     std::cout << "testCapacityOne passed\n";
 }
 
+void testCarConstructor()
+{
+    Car car(
+        20,
+        Color::Blue,
+        {4, 7},
+        Direction::Left
+    );
+
+    assert(car.getID() == 20);
+    assert(car.getColor() == Color::Blue);
+    assert(car.getLocation() == std::make_pair(4,7));
+
+    // Todos los carros ocupan 2 espacios
+    assert(car.getSize() == 2);
+
+    std::cout << "testCarConstructor passed\n";
+}
+
+void testCarGetters()
+{
+    Car car(
+        30,
+        Color::Green,
+        {1, 2},
+        Direction::Up
+    );
+
+    assert(car.getID() == 30);
+    assert(car.getColor() == Color::Green);
+
+    auto location = car.getLocation();
+
+    assert(location.first == 1);
+    assert(location.second == 2);
+
+    std::cout << "testCarGetters passed\n";
+}
+
+void testBusDestructor()
+{
+    Vehicle* vehicle =
+        new Bus(
+            1,
+            Color::Red,
+            {0,0},
+            Direction::Right,
+            3,
+            4
+        );
+
+    delete vehicle;
+
+    std::cout << "testBusDestructor passed\n";
+}
+
 int main()
 {
     testConstructor();
@@ -154,6 +211,9 @@ int main()
     testBoardPassenger();
     //testBoardPassengerWhenFull();
     testCapacityOne();
+    testCarConstructor();
+    testCarGetters();
+    testBusDestructor();
 
     std::cout << "\nAll Bus tests passed successfully.\n";
 

@@ -12,6 +12,6 @@ enum class Color{
 enum class Direction{
     Up,
     Down,
-    left,
-    right
+    Left,
+    Right
 };

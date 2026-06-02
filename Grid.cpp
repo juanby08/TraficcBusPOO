@@ -1,9 +1,10 @@
-// Curso: Fundamentos de Programación Orientada a Objetos
-// Archivo: Grid.cpp
-// Autores:
-// - Camilo Espinal León | Código: 2538740| camilo.espinal@correounivalle.edu.co
-//
-// Fecha: 1/06/2026
+/* Curso: Fundamentos de Programación Orientada a Objetos
+ Archivo: Grid.cpp
+ Autores:
+ - Camilo Espinal León | Código: 2538740| camilo.espinal@correounivalle.edu.co
+
+ Fecha: 1/06/2026
+*/
 
 // incluir la clase
 #include "Grid.h"

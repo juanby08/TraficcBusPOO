@@ -6,7 +6,12 @@ Vehicle::Vehicle(
     std::pair<int,int> location,
     Direction direction,
     int size
-){}
+):
+    ID(ID),
+    color(color),
+    location(location),
+    direction(direction),
+    size(size){}
 
 Color Vehicle::getColor() const{
     return color;

@@ -1,15 +1,31 @@
 #include "MGame.h"
 //#include "Game.cpp"
-#include <fstream> // Para leer los archivos planos de niveles
 #include <iostream>
+#include <fstream> // Para leer los archivos planos de niveles
 using namespace std;
 
+// Constructor
 MGame:: MGame(){
+    level = 1;
+    finished = false;
+    busQuantity = 0;
+    passengersQuantity = 0;
 
     }
 
-//Se cargaria el nivel, se inicializarian los buses y pasajeros, y se colocarian en el tablero
-void MGame::loadLevel(){
-  
-    cout << "Cargando nivel " << level << endl;
+// Método
+void MGame::loadLevel(string filePath) {
+    cout << "Cargando nivel " << filePath << endl;
+
+    // Abrir el archivo txt
+    ifstream file(filePath);
+
+    // Variables para almacenar los datos del nivel
+    int row, columns;
+    
+    file >> row >> columns; // Leer el número de filas y columnas del nivel
+    cout << "Se creo un tablero de " << row << " filas y " << columns << " columnas." << endl;
+
+    //ciclo para leer vehiculos y pasajeros.... en espera
+    cout << "Nivel cargado exitosamente" << endl;
 }

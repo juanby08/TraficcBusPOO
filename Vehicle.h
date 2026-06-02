@@ -40,6 +40,7 @@ Colaboradores:
         int getID() const;
         std::pair<int,int> getLocation() const;
         int getSize() const;
+        Direction getDirection() const;
     };
 
 #endif // VEHICLE_H

@@ -1,6 +1,6 @@
 
 //Definiciones de color y direccion
-        // work in progress //
+        // Para usar estas definiciones: #include "globaldefinitions.h"//
 
 enum class Color{
     Green, 
@@ -12,6 +12,6 @@ enum class Color{
 enum class Direction{
     Up,
     Down,
-    left,
-    right
+    Left,
+    Right
 };

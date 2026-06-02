@@ -34,12 +34,13 @@ Colaboradores:
         int size;
 
     public:
-        //constructor Vehicle(int id){}
+        Vehicle(int ID, Color color, std::pair<int,int> location, Direction direction, int size);
         virtual ~Vehicle() = default;
-        //virtual void MoveFoward() = 0;
-        Color getColor();
-        int getID();
-
+        Color getColor() const;
+        int getID() const;
+        std::pair<int,int> getLocation() const;
+        int getSize() const;
+        Direction getDirection() const;
     };
 
 #endif // VEHICLE_H

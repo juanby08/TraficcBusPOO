@@ -1,22 +1,53 @@
-/*
-Información CRC:
+/**
+ * @file Vehicle.h
+ * @brief Definición de la clase abstracta Vehiculo.
+ *
+ * @details
+ * Define los atributos y metodos comunes a todos los objetos de tipo Vehiculo.
+ * Funciona como una interfaz que encapsula el estado en el espacio, teniendo en 
+ * cuenta posicion, tamaño y direccion, y controla la capacidad de pasajeros.
+ * 
+ * -----------------------------------------------------------------------------
+ * Estándar CRC (Clase - Responsabilidad - Colaboración)
+ * -----------------------------------------------------------------------------
+ *
+ * Clase:
+ *   Vehicle
+ *
+ * Responsabilidades:
+ *   - Definir atributos y metodos comunes para los objetos de tipo vehiculo.
+ *   - Gestiona el estado en el espacio de los objetos (posicion, direccion, tamaño)
+ *   - Controla el flujo de pasajeros, permitiendo abordar y verificar capacidad maxima.
+ *
+ * Colaboradores:
+ *   - Bus - Clase Hija:
+ *     * Hereda el comportamiento de vehiculo.
+ *   - Car - Clase Hija:
+ *     * Hereda el comportamiento de Car. 
+ *   - globaldefinitions:
+ *     * Toma las estructuras de color, direccion y vehicletype.
+ *
+ * -----------------------------------------------------------------------------
+ *
+ * @author 
+ * @email 
+ * @license GNU General Public License v3.0 (GPL)
+ *
+ * Este programa es software libre: puede redistribuirlo y/o modificarlo
+ * bajo los términos de la Licencia Pública General de GNU publicada por
+ * la Free Software Foundation, ya sea la versión 3 de la Licencia, o
+ * (a su elección) cualquier versión posterior.
+ *
+ * Este programa se distribuye con la esperanza de que sea útil,
+ * pero SIN NINGUNA GARANTÍA; incluso sin la garantía implícita de
+ * COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR.
+ * Véase la Licencia Pública General de GNU para más detalles.
+ *
+ * Debería haber recibido una copia de la Licencia Pública General de GNU
+ * junto con este programa. Si no, consulte <https://www.gnu.org/licenses/>.
+ */
 
-Clase: Vehicle
 
-Responsabilidades:
-- Definir los atributos y metodos comunes para los objetos de tipo vehiculo en el tablero
-
-Colaboradores:
-
-    Este es un proyecto del curso FPOO de la Universidad del Valle, 
-    desarrollado con fines académicos. Puede ser utilizado con fines 
-    académicos dando los créditos de la autoría.
-
-    
-    Autor: 
-    Correo: 
-    Fecha: Mayo 2026
-*/
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
@@ -45,7 +76,7 @@ Colaboradores:
             Direction direction, 
             int size, int capacity, 
             int currentPassengers);
-            
+
         virtual ~Vehicle() = default;
         Color getColor() const;
         int getID() const;

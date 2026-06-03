@@ -4,18 +4,19 @@
 #include "Vehicle.h"
 
     class Bus : public Vehicle {
-    private:
-
-        int capacity;
-        int currentPassengers;
 
     public: 
 
-        Bus(int ID, Color color, std::pair<int,int> location, Direction direction, int size, int capacity);
-        int getCapacity() const;
-        int getCurrentPassengers() const;
-        bool isFull();
-        bool boardPassenger();
+        Bus(
+            int ID, 
+            Color color, 
+            std::pair<int,int> location, 
+            Direction direction, 
+            int size, 
+            int capacity
+        );
+
+        VehicleType getType() const override;
 
     };
 #endif // BUS_H

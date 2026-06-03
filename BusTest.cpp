@@ -101,30 +101,6 @@ void testBoardPassenger()
     std::cout << "testBoardPassenger passed\n";
 }
 
-// void testBoardPassengerWhenFull()
-// {
-//     Bus bus(
-//         1,
-//         Color::Red,
-//         {0, 0},
-//         Direction::Right,
-//         3,
-//         2
-//     );
-
-//     assert(bus.boardPassenger());
-//     assert(bus.boardPassenger());
-
-//     assert(bus.isFull());
-
-//     // No debería permitir más pasajeros
-//     assert(!bus.boardPassenger());
-
-//     assert(bus.getCurrentPassengers() == 2);
-
-//     std::cout << "testBoardPassengerWhenFull passed\n";
-// }
-
 void testCapacityOne()
 {
     Bus bus(
@@ -184,6 +160,24 @@ void testCarGetters()
     std::cout << "testCarGetters passed\n";
 }
 
+void testCarBoardPassengers()
+{
+    Car car(
+        30,
+        Color::Green,
+        {1, 2},
+        Direction::Up
+    );
+
+    assert(car.getID() == 30);
+    assert(car.getColor() == Color::Green);
+
+    assert(!car.isFull());
+    assert(car.boardPassenger());
+
+    std::cout << "testCarBoardPassenger passed\n";
+}
+
 void testBusDestructor()
 {
     Vehicle* vehicle =
@@ -207,11 +201,11 @@ int main()
     testGetters();
     testIsFullInitiallyFalse();
     testBoardPassenger();
-    //testBoardPassengerWhenFull();
     testCapacityOne();
     testCarConstructor();
     testCarGetters();
     testBusDestructor();
+    testCarBoardPassengers();
 
     std::cout << "\nAll Bus tests passed successfully.\n";
 

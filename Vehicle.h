@@ -33,14 +33,33 @@ Colaboradores:
         Direction direction;// Direction sera definido en un header como una estructura de enum que contenga las direcciones (UP, DOWN, LEFT, RIGHT)
         int size;
 
+        int capacity;
+        int currentPassengers;
+
     public:
-        Vehicle(int ID, Color color, std::pair<int,int> location, Direction direction, int size);
+
+        Vehicle(
+            int ID, 
+            Color color, 
+            std::pair<int,int> location, 
+            Direction direction, 
+            int size, int capacity, 
+            int currentPassengers);
+            
         virtual ~Vehicle() = default;
         Color getColor() const;
         int getID() const;
         std::pair<int,int> getLocation() const;
         int getSize() const;
         Direction getDirection() const;
+
+        int getCapacity() const;
+        int getCurrentPassengers() const;
+
+        bool boardPassenger();
+        bool isFull();
+
+        virtual VehicleType getType() const = 0;
     };
 
 #endif // VEHICLE_H

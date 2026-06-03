@@ -12,30 +12,10 @@ Bus::Bus(
         color, 
         location,
         direction,
-        size),
-    capacity(capacity),
-    currentPassengers(0){}
+        size,
+        capacity,
+        0){}
 
-int Bus::getCapacity() const{
-    return capacity;
-}    
-
-int Bus::getCurrentPassengers() const{
-    return currentPassengers;
-}
-
-bool Bus::isFull(){
-    return currentPassengers == capacity;
-}
-
-bool Bus::boardPassenger(){
-    if(isFull()){
-
-        return false;
-        
-    }
-
-    currentPassengers++;
-    return true;
-    
+VehicleType Bus::getType() const{
+    return VehicleType::BUS;
 }

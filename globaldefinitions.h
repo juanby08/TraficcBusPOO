@@ -18,4 +18,9 @@ enum class Direction{
     Right
 };
 
+enum class VehicleType{
+    CAR,
+    BUS
+};
+
 #endif // GLOBALDEFINITIONS_H

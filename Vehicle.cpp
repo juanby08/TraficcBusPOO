@@ -5,13 +5,17 @@ Vehicle::Vehicle(
     Color color, 
     std::pair<int,int> location,
     Direction direction,
-    int size
+    int size,
+    int capacity,
+    int currentPassengers
 ):
     ID(ID),
     color(color),
     location(location),
     direction(direction),
-    size(size){}
+    size(size),
+    capacity(capacity),
+    currentPassengers(0){}
 
 Color Vehicle::getColor() const{
     return color;
@@ -31,4 +35,24 @@ int Vehicle::getSize() const{
 
 Direction Vehicle::getDirection() const{
     return direction;
+}
+
+int Vehicle::getCapacity() const{
+    return capacity;
+}
+
+int Vehicle::getCurrentPassengers() const{
+    return currentPassengers;
+}
+
+bool Vehicle::isFull(){
+    return currentPassengers == capacity;
+}
+
+bool Vehicle::boardPassenger(){
+    if(isFull()){
+        return false;
+    }
+    currentPassengers++;
+    return true;
 }

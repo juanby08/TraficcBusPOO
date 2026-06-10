@@ -2,9 +2,9 @@
 
 Car::Car(
     int ID, 
-    Color color, 
+    int color, 
     std::pair<int, int> location,
-    Direction direction)
+    int direction)
     : Vehicle (
     ID,
     color,

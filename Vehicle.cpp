@@ -2,9 +2,9 @@
 
 Vehicle::Vehicle(
     int ID, 
-    Color color, 
+    int color, 
     std::pair<int,int> location,
-    Direction direction,
+    int direction,
     int size,
     int capacity,
     int currentPassengers
@@ -17,7 +17,8 @@ Vehicle::Vehicle(
     capacity(capacity),
     currentPassengers(0){}
 
-Color Vehicle::getColor() const{
+// 1 = Green, 2 = Blue, 3 = Yellow, 4 = Red
+int Vehicle::getColor() const{
     return color;
 }
 
@@ -33,7 +34,8 @@ int Vehicle::getSize() const{
     return size;
 }
 
-Direction Vehicle::getDirection() const{
+// 1 = Up, 2 = Down, 3 = Left, 4 = Right
+int Vehicle::getDirection() const{
     return direction;
 }
 

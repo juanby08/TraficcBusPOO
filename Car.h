@@ -54,9 +54,9 @@ class Car : public Vehicle {
     public:
         Car(
             int ID, 
-            Color color, 
+            int color, 
             std::pair<int, int> location, 
-            Direction direction);
+            int direction);
 
     
         VehicleType getType() const override;

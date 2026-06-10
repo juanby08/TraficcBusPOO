@@ -2,9 +2,9 @@
 
 Bus::Bus(
     int ID,
-    Color color, 
+    int color, 
     std::pair<int, int> location,
-    Direction direction,
+    int direction,
     int size,
     int capacity) 
     : Vehicle(

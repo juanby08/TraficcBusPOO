@@ -59,9 +59,9 @@
     protected:
 
         int ID;
-        Color color; //Color sera definido en un header como una estructura de enum que contenga los colores (GREEN, YELLOW, BLUE, RED)
+        int color; // 1 = Green, 2 = Blue, 3 = Yellow, 4 = Red
         std::pair<int,int> location;
-        Direction direction;// Direction sera definido en un header como una estructura de enum que contenga las direcciones (UP, DOWN, LEFT, RIGHT)
+        int direction; // 1 = Up, 2 = Down, 3 = Left, 4 = Right
         int size;
 
         int capacity;
@@ -71,18 +71,18 @@
 
         Vehicle(
             int ID, 
-            Color color, 
+            int color, 
             std::pair<int,int> location, 
-            Direction direction, 
+            int direction, 
             int size, int capacity, 
             int currentPassengers);
 
         virtual ~Vehicle() = default;
-        Color getColor() const;
+        int getColor() const;
         int getID() const;
         std::pair<int,int> getLocation() const;
         int getSize() const;
-        Direction getDirection() const;
+        int getDirection() const;
 
         int getCapacity() const;
         int getCurrentPassengers() const;

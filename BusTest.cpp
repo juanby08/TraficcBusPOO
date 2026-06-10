@@ -37,44 +37,44 @@ void testConstructor()
     std::cout << "testConstructor passed\n";
 }
 
-// void testGetters()
-// {
-//     Bus bus(
-//         10,
-//         Color::Blue,
-//         {5, 6},
-//         Direction::Left,
-//         2,
-//         8
-//     );
+void testGetters()
+{
+    Bus bus(
+        10,
+        2,
+        {5, 6},
+        3,
+        2,
+        8
+    );
 
-//     assert(bus.getID() == 10);
-//     assert(bus.getColor() == Color::Blue);
-//     assert(bus.getLocation().first == 5);
-//     assert(bus.getLocation().second == 6);
-//     assert(bus.getSize() == 2);
+    assert(bus.getID() == 10);
+    assert(bus.getColor() == 2);
+    assert(bus.getLocation().first == 5);
+    assert(bus.getLocation().second == 6);
+    assert(bus.getSize() == 2);
 
-//     assert(bus.getCapacity() == 8);
-//     assert(bus.getCurrentPassengers() == 0);
+    assert(bus.getCapacity() == 8);
+    assert(bus.getCurrentPassengers() == 0);
 
-//     std::cout << "testGetters passed\n";
-// }
+    std::cout << "testGetters passed\n";
+}
 
-// void testIsFullInitiallyFalse()
-// {
-//     Bus bus(
-//         1,
-//         Color::Green,
-//         {0, 0},
-//         Direction::Up,
-//         2,
-//         2
-//     );
+void testIsFullInitiallyFalse()
+{
+    Bus bus(
+        1,
+        1,
+        {0, 0},
+        1,
+        2,
+        2
+    );
 
-//     assert(!bus.isFull());
+    assert(!bus.isFull());
 
-//     std::cout << "testIsFullInitiallyFalse passed\n";
-// }
+    std::cout << "testIsFullInitiallyFalse passed\n";
+}
 
 // void testBoardPassenger()
 // {
@@ -198,8 +198,8 @@ void testConstructor()
 int main()
 {
     testConstructor();
-    //testGetters();
-    //testIsFullInitiallyFalse();
+    testGetters();
+    testIsFullInitiallyFalse();
     //testBoardPassenger();
     //testCapacityOne();
     //testCarConstructor();

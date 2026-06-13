@@ -21,8 +21,8 @@ class MGame{
     
     //Métodos
     public:
-        MGame(); //constructor
-
+        //MGame(); //constructor
+        
         //Getters
         std::vector<Vehicles> getVehicles() const;
         std::vector<Passengers> getPassengers() const;

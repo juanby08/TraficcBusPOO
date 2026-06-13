@@ -12,12 +12,7 @@
 
 using namespace std;
 
-MGame::MGame() {
-    level = 1;
-    finished = false;
-    busQuantity = 0;
-    passengersQuantity = 0;
-}
+//MGame::MGame() {}
 
 void MGame::loadLevel(string filePath) {
     cout << "Cargando nivel " << filePath << "..." << endl;

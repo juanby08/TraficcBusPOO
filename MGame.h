@@ -14,22 +14,20 @@ using namespace std;
 class MGame{
     //Atributos
     private: 
-        int level;
-        bool finished;
-        int busQuantity;
-        int passengersQuantity;
-        std::vector<Vehicle*> vehicles;
-        std::vector<Color> passengerQueue;
+        std::vector<Vehicles> vehicles;
+        std::vector<Passengers> passengers;
+        Grid* grid;
+        ParkingZone parkingZone;
     
     //Métodos
     public:
         MGame(); //constructor
 
         //Getters
-        int getLevel() const;
-        bool Finished() const;
-        int getBusQuantity() const;
-        int getPassengersQuantity() const;
+        std::vector<Vehicles> getVehicles() const;
+        std::vector<Passengers> getPassengers() const;
+        Grid createBoard() const;
+        ParkingZone getParkingZone() const;
 
         // Método que recibe el nombre del archivo txt
         void loadLevel(string filePath);

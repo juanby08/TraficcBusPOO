@@ -57,27 +57,27 @@
  */
 
 // Candado: Evita la doble declaración
-#ifndef _GRID_H_
-#define _GRID_H_
+#ifndef GRID_H
+#define GRID_H
+
 #include <vector>
 #include <string>
-using namespace std;
+#include "Vehicle.h"
 
-// Nombre clase
-class Grid
-{
-  // atributos
-  private: 
-    string level; //Almacena el nivel del juego
-    int n;
-    int m;
-    vector<vector<int>> Map;//El vector de vectores 1 y 0 mapa
+    class Grid{
 
-  // métodos
-  public:
-  Grid();   // Método constructor
-    int getBus(int x, int y);// Retorna el valor de la celda en la posición (x, y)
-    void getLevel(string auxlevelname);   // Retorna el nivel del juego
-};
-// Cierro el candado
-#endif
+    private:
+
+    int rows;
+    int columns;
+    std::vector<std::vector<char>> board;
+    std::tuple<int,int,char> getDirection(const Vehicle& vehicle);
+
+    public: 
+    Grid(int columns,int rows);
+    void addVehicle(const Vehicle& vehicle);
+    bool checkPath(const Vehicle& vehicle);
+    std::vector<std::vector<char>> getBoard();
+
+    };
+#endif // GRID_H

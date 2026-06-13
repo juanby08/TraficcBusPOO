@@ -6,45 +6,91 @@
  Fecha: 1/06/2026
 */
 
-// incluir la clase
 #include "Grid.h"
-#include <vector>
-// libreria para el manejo de archivos planos
-#include <iostream>
-#include <fstream>
-#include <string>
-using namespace std;
 
-// Constructor
-Grid::Grid()
-{
-    Map.resize(0); //Se inicializa el laberinto en vacio
-    level = "";
+Grid::Grid(int columns, int rows): columns(columns), rows(rows){
+    board.resize(rows, std::vector<char>(columns, '.'));
 }
 
+std::tuple<int,int,char> Grid::getDirection(const Vehicle& vehicle){
 
-void Grid::getLevel(string auxlevelname)
-{
-  // Abrir el archivo plano
-  ifstream flujoDatos(auxlevelname);
-  // capturar la información linea a linea del archivo plano
-  string line;
-  string aux;
-  // Recorrer el archivo plano
-  while(getline(flujoDatos, line)){
-    vector <int> auxVector;
-    for(int j=0; j<19; j = j+2){
-      aux = line.substr(j, 1);
-      auxVector.push_back(stoi(aux));// Cargar el Mapa (atributo) y transformar el dato char a int
+    int direction = vehicle.getDirection();
+
+    int dx = 0;
+    int dy = 0;
+    char symbol;
+    // 1 = Up, 2 = Down, 3 = Left, 4 = Right
+    switch (direction){
+        case 1:
+            dx = -1;
+            symbol = '^'; 
+            break;
+        case 2:
+            dx = 1;
+            symbol = 'v';
+            break;
+        case 3:
+            dy = -1;
+            symbol = '<';
+            break;
+        case 4:
+            dy = 1;
+            symbol = '>';
+            break;
     }
-    Map.push_back(auxVector);// Cargar el Mapa (atributo)
-  }
+
+    return {dx, dy, symbol};
 }
 
+void Grid::addVehicle(const Vehicle& vehicle){
 
-int Grid::getBus(int x, int y)
-{
-  return Map[x][y]; // Retorna "0" o "1" del Mapa
+    //def variables
+    int id = vehicle.getID();
+    std::pair<int,int> location = vehicle.getLocation();
+    int size = vehicle.getSize();
+
+    auto [dx, dy, symbol] = getDirection(vehicle);
+
+    //Creating Vehicle body
+    for (int i = 0; i < size - 1; i++){
+        // 48 + id funciona para digitos del 1 al 9
+        board[location.first + i*dx][location.second + i*dy] = '0' + id; 
+    }
+
+    //Creating Vehicle head
+    board[location.first + (size-1) * dx][location.second + (size-1) * dy] = symbol;
+        
+    }
+
+bool Grid::checkPath(const Vehicle& vehicle){
+    //def variables
+    std::pair<int,int> location = vehicle.getLocation();
+    int size = vehicle.getSize();
+
+    auto [dx, dy, symbol] = getDirection(vehicle);
+
+    int nextX = location.first + (size) * dx;
+    int nextY = location.second + (size) * dy;
+
+    while(
+        nextX >= 0 && nextX < rows
+        && nextY >= 0 && nextY < columns
+        ){
+        
+            if (board[nextX][nextY] != '.'){
+                return false;
+            }
+
+            nextX += dx;
+            nextY += dy;
+    }
+
+    return true;
 }
+
+std::vector<std::vector<char>> Grid::getBoard(){
+    return board;
+}
+
 
 

@@ -1,0 +1,146 @@
+@startuml
+class CGame{
+
+- win: bool
+
+- level: MGame*
+
+- display: VGame*
+
+- handleUserInput()
+
++ CGame(MGame* level, VGame* display)
+
++ play(): void
+
++ boarding(): bool 
+
+}
+
+
+
+class MGame{
+
+- vehicles: vector<Vehicles>
+
+- passengers: vector<Passengers>
+
+- grid: Grid*
+
+- parkingZone: ParkingZone
+
++ loadLevel(): void
+
++ createBoard(): Grid
+
++ getVehicles(): vector<Vehicles>
+
++ getPassengers(): vector<Passengers>
+
+}
+
+
+class ParkingZone {
+
+- parkedBuses: vector <Vehicle*>
+
+- row : int
+
+- columns : int
+
++ columnFree() : bool
+
+}
+
+
+class Bus {
+
+}
+
+class Car {
+
+}
+
+
+abstract class Vehicle{
+
+- ID: int
+
+- capacity: int
+
+- color: int
+
+- Location: pair<int,int>
+
+- direction: int
+
+- size: int
+
++ ~Vehicle(): virtual
+
++ getColor(): int
+
++ getDirection(): int
+
++ getID(): int
+
++ isFull(): bool
+
++ getLocation(): pair<int, int>
+
++ boardPassenger(): bool
+
+}
+
+
+class VGame{
+
++ displayGame(MGame* level): void
+
++ displayText(text: string): void
+
+}
+
+
+
+class Grid {
+
+- columns: int
+
+- rows: int
+
+- board: vector <vector <char>>
+
+- getDirection(const &Vehicle vehicle): std::tuple<int, int, char>
+
++ Grid(columns, rows)
+
++ addVehicle(const &Vehicle vehicle): void
+
++ checkPath(const &Vehicle vehicle): bool
+
++ getBoard(): vector <vector <char>>
+
+}
+
+
+
+class Passenger{
+
+- color: int
+
+}
+
+
+
+ParkingZone -- Vehicle
+CGame --> MGame
+CGame --> VGame
+VGame ..> MGame
+MGame *-- Grid
+MGame *-- ParkingZone
+Grid -- Vehicle
+MGame *-- Passenger
+Vehicle <|-- Bus: Inherits
+Vehicle <|-- Car: Inherits
+@enduml

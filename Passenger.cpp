@@ -1,15 +1,9 @@
 #include "Passenger.h"
 
-
-
-Passenger::Passenger() {
-    color = Color::Red;
-}
-
-Passenger::Passenger(Color auxColor) {
+Passenger::Passenger(int auxColor) {
     color= auxColor;
 }
 
-Color Passenger::getColor() const {
+int Passenger::getColor() const {
     return color;
 }

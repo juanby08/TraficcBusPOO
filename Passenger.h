@@ -1,17 +1,14 @@
 #ifndef PASSENGER_H
 #define PASSENGER_H
 
-#include "Color.h"
-
 class Passenger {
 private:
-    Color color;
+    int color; // 1 = Green, 2 = Blue, 3 = Yellow, 4 = Red
 
 public:
-    Passenger();
-    Passenger(Color auxColor);
+    Passenger(int auxColor);
 
-    Color getColor() const;
+    int getColor() const;
 };
 
 #endif

@@ -84,3 +84,10 @@ std::vector<std::vector<char>> Grid::getBoard(){
     return board;
 }
 
+int Grid::getRows() const{
+    return rows;
+}
+
+int Grid::getColumns() const{
+    return columns;
+}

@@ -18,7 +18,11 @@
     Grid(int columns,int rows);
     void addVehicle(const Vehicle& vehicle);
     bool checkPath(const Vehicle& vehicle);
+
+    //getters
     std::vector<std::vector<char>> getBoard();
+    int getRows() const;
+    int getColumns() const;
 
     };
 #endif // GRID_H

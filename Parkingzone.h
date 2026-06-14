@@ -20,6 +20,10 @@ public:
     bool removeBus(int vehicleID);
 
     void showParking();
+
+    //getters
+    std::vector<Vehicle*> getParkedBuses() const;
+
 };
 
 #endif

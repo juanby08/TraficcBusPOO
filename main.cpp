@@ -2,7 +2,7 @@
 #include "MGame.h"
 
 int main() {
-    MGame game;
+    MGame game(1);
     // Cargar el nivel desde el archivo plano
     game.loadLevel("level1.txt"); 
     return 0;

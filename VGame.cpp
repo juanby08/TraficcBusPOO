@@ -1,4 +1,4 @@
-#include "VGameB.h"
+#include "VGame.h"
 #include <iostream>
 
 // Traduce el entero del atributo color al código ANSI correspondiente

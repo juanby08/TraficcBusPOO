@@ -56,3 +56,7 @@ void ParkingZone::showParking() {
 
     std::cout << "]\n";
 }
+
+std::vector<Vehicle*> ParkingZone::getParkedBuses() const{
+    return parkedBuses;
+}

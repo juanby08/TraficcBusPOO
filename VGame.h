@@ -1,5 +1,5 @@
-#ifndef VGAMEB_H
-#define VGAMEB_H
+#ifndef VGAME_H
+#define VGAME_H
 
 #include "MGame.h"
 #include <string>
@@ -27,4 +27,4 @@ public:
     void printPassengerQueue(MGame& game);
 };
 
-#endif // VGAMEB_H
+#endif // VGAME_H

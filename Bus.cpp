@@ -6,16 +6,16 @@ Bus::Bus(
     std::pair<int, int> location,
     int direction,
     int size,
-    int capacity) 
+    int currentPassengers) 
     : Vehicle(
         ID, 
         color, 
         location,
         direction,
         size,
-        capacity,
-        0){}
+        size == 2 ? 6:8,
+        currentPassengers){}
 
-VehicleType Bus::getType() const{
-    return VehicleType::BUS;
+std::string Bus::getType() const{
+    return "bus";
 }

@@ -56,10 +56,11 @@ class Car : public Vehicle {
             int ID, 
             int color, 
             std::pair<int, int> location, 
-            int direction);
+            int direction,
+            int currentPassengers);
 
     
-        VehicleType getType() const override;
+        std::string getType() const override;
     
 };
 

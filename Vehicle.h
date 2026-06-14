@@ -53,7 +53,6 @@
 
 #include <string>
 #include <utility>
-#include "globaldefinitions.h"
 
     class Vehicle{
     protected:
@@ -74,8 +73,10 @@
             int color, 
             std::pair<int,int> location, 
             int direction, 
-            int size, int capacity, 
-            int currentPassengers);
+            int size,
+            int capacity,
+            int currentPassengers
+            );
 
         virtual ~Vehicle() = default;
         int getColor() const;
@@ -90,7 +91,7 @@
         bool boardPassenger();
         bool isFull();
 
-        virtual VehicleType getType() const = 0;
+        virtual std::string getType() const = 0;
     };
 
 #endif // VEHICLE_H

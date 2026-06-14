@@ -4,7 +4,8 @@ Car::Car(
     int ID, 
     int color, 
     std::pair<int, int> location,
-    int direction)
+    int direction,
+    int currentPassengers)
     : Vehicle (
     ID,
     color,
@@ -12,8 +13,8 @@ Car::Car(
     direction,
     2,
     4,
-    0){}
+    currentPassengers){}
 
-VehicleType Car::getType() const{
-    return VehicleType::CAR;
+std::string Car::getType() const{
+    return "Car";
 }

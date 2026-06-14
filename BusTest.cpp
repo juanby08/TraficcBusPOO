@@ -31,8 +31,8 @@ void testConstructor()
     assert(bus.getLocation() == std::make_pair(2, 3));
     assert(bus.getSize() == 3);
 
-    assert(bus.getCapacity() == 4);
-    assert(bus.getCurrentPassengers() == 0);
+    assert(bus.getCapacity() == 8);
+    assert(bus.getCurrentPassengers() == 4);
 
     std::cout << "testConstructor passed\n";
 }
@@ -45,7 +45,7 @@ void testGetters()
         {5, 6},
         3,
         2,
-        8
+        0
     );
 
     assert(bus.getID() == 10);
@@ -54,7 +54,7 @@ void testGetters()
     assert(bus.getLocation().second == 6);
     assert(bus.getSize() == 2);
 
-    assert(bus.getCapacity() == 8);
+    assert(bus.getCapacity() == 6);
     assert(bus.getCurrentPassengers() == 0);
 
     std::cout << "testGetters passed\n";

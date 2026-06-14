@@ -15,7 +15,7 @@ Vehicle::Vehicle(
     direction(direction),
     size(size),
     capacity(capacity),
-    currentPassengers(0){}
+    currentPassengers(currentPassengers){}
 
 // 1 = Green, 2 = Blue, 3 = Yellow, 4 = Red
 int Vehicle::getColor() const{

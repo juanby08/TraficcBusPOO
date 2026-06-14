@@ -59,11 +59,11 @@
             int color, 
             std::pair<int,int> location, 
             int direction, 
-            int size, 
-            int capacity
+            int size,
+            int currentPassengers
         );
 
-        VehicleType getType() const override;
+        std::string getType() const override;
 
     };
 #endif // BUS_H

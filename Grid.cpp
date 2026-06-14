@@ -1,11 +1,3 @@
-/* Curso: Fundamentos de Programación Orientada a Objetos
- Archivo: Grid.cpp
- Autores:
- - Camilo Espinal León | Código: 2538740| camilo.espinal@correounivalle.edu.co
-
- Fecha: 1/06/2026
-*/
-
 #include "Grid.h"
 
 Grid::Grid(int columns, int rows): columns(columns), rows(rows){
@@ -91,6 +83,4 @@ bool Grid::checkPath(const Vehicle& vehicle){
 std::vector<std::vector<char>> Grid::getBoard(){
     return board;
 }
-
-
 

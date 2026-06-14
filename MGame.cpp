@@ -25,32 +25,44 @@ void MGame::loadLevel(string filePath) {
         return;
     }
     // Temporal var to save information
-    int rows, columns;
-    file >> rows >> columns; 
+    int rows, columns, parkingSpots;
+    file >> rows >> columns >> parkingSpots; 
 
     //creates grid
     grid = std::make_unique<Grid>(columns, rows);
 
+    //creates parkingZone
+    parkingZone = std::make_unique<ParkingZone>(rows, parkingSpots);
+
     string typeStr;
-    int x, y, size, capacity, currentPassengers, vehicleColor, vehicleDir, passengerColor;
+    int x, y, size, capacity, currentPassengers, vehicleColor, vehicleDir, passengerColor, isParked;
 
     // Leer los vehículos hasta encontrar el "-"
     while (file >> typeStr && typeStr != "-") {
-        file >> vehicleColor >> x >> y >> vehicleDir >> size >> currentPassengers;
+        file >> vehicleColor >> x >> y >> vehicleDir >> size >> currentPassengers >> isParked;
 
-        std::cout<<typeStr<<std::endl;
-
-        std::cout << vehicleColor << x << y << vehicleDir << size << currentPassengers;
+        //Create vehicle with nullptr
+        Vehicle* vehicle = nullptr;
 
         // Instanciar los objetos y agregarlos al vector de vehículos
         if (typeStr == "BUS") {
             // El constructor de Bus pide capacidad. Le pasamos 4 por defecto.
-            vehicles.push_back(new Bus(vehicleQuantity, vehicleColor, {x, y}, vehicleDir, size, currentPassengers));
-            vehicleQuantity++;
+            vehicle = new Bus(vehicleQuantity, vehicleColor, {x, y}, vehicleDir, size, currentPassengers);
         } 
         else if (typeStr == "CAR") {
-            vehicles.push_back(new Car(vehicleQuantity, vehicleColor, {x, y}, vehicleDir, currentPassengers));
-            vehicleQuantity++; 
+            vehicle = new Car(vehicleQuantity, vehicleColor, {x, y}, vehicleDir, currentPassengers);
+        }
+
+        if (vehicle != nullptr){
+            vehicles.push_back(vehicle);
+            vehicleQuantity++;
+
+            if (isParked == 1){
+                parkingZone->addBus(vehicle);
+            } 
+            else {
+                grid->addVehicle(*vehicle);
+            }
         }
     
     }
@@ -65,10 +77,11 @@ void MGame::loadLevel(string filePath) {
     cout << "Vehiculos creados: " << vehicleQuantity << endl;
     cout << "Pasajeros en fila: " << passengersQuantity << endl;
 
-    //Adds vehicle to grid
-    for (auto vehicle: vehicles){
-        grid->addVehicle(*vehicle);
-    }
+    //Check for condition
+    
+    // for (auto vehicle: vehicles){
+    //     grid->addVehicle(*vehicle);
+    // }
     cout << "Nivel cargado exitosamente.2" << endl;
 
     file.close();
@@ -89,8 +102,7 @@ int MGame::getLevel() const
     return level;
 }
 
-Grid& MGame::getGrid() const
-{
+Grid& MGame::getGrid() const{
     return *grid;
 }
 
@@ -101,4 +113,8 @@ std::vector<Vehicle*> MGame::getVehicles() const{
 
 std::vector<Passenger*> MGame::getPassengers() const{
     return passengerQueue;
+}
+
+ParkingZone& MGame::getParkingZone() const{
+    return *parkingZone;
 }

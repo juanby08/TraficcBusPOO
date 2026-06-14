@@ -110,8 +110,7 @@ std::vector<Vehicle*> MGame::getVehicles() const{
     return vehicles;
 }
 
-
-std::vector<Passenger*> MGame::getPassengers() const{
+std::vector<Passenger*>& MGame::getPassengers(){
     return passengerQueue;
 }
 

@@ -13,9 +13,8 @@
 #include <memory>
 using namespace std;
 
-// Nombre Clase
 class MGame{
-    //Atributos
+
     private: 
         int level;
         int vehicleQuantity;
@@ -24,10 +23,10 @@ class MGame{
         std::vector<Passenger*> passengerQueue;
         std::unique_ptr<Grid> grid;
         std::unique_ptr<ParkingZone> parkingZone;
-    
-    //Métodos
+
     public:
-        MGame(int level); //constructor
+        MGame(int level);
+        void loadLevel(string filePath);
 
         //Getters
         int getLevel() const;
@@ -36,10 +35,8 @@ class MGame{
         Grid& getGrid() const;
         ParkingZone& getParkingZone() const;
         std::vector<Vehicle*> getVehicles() const;
-        std::vector<Passenger*> getPassengers() const;
+        std::vector<Passenger*>& getPassengers();
 
-        // Método que recibe el nombre del archivo txt
-        void loadLevel(string filePath);
 };
 
 #endif // MGAME_H

@@ -5,26 +5,30 @@
 #include "Bus.h"
 #include "Car.h"
 #include "MGame.h"
+#include "VGame.h"
 #include <windows.h>
 #include <string>
 #include <vector>
 #include <utility>
-//#include "Game.h"
+
 using namespace std;
 
-// Nombre Clase
-class CGame{
-    //Atributos
+// Definición de la clase CGame
+class CGame {
+    // Atributos
     private: 
         bool win;
         MGame* level;
         VGame* display;
     
-    //Métodos
+    // Métodos
     public:   
-        //Getters
-        HANDLE UserInput() const;
         CGame(MGame* level, VGame* display);
+        
+        // Getters 
+        HANDLE getConsoleHandle() const; // Se usa para obtener el handle de la consola y configurar entrada (input) para leer eventos de teclado
+        string readUserInput() const; // Se usa para leer el teclado y retornar un string con la tecla presionada
+        
         void play();
         bool boarding();
 };

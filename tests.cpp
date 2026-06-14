@@ -11,7 +11,7 @@ int main() {
     
     // Validar constructor
     assert(game.getLevel() == 1);
-    assert(game.getBusQuantity() == 0);
+    assert(game.getVehicleQuantity() == 0);
     assert(game.getPassengersQuantity() == 0);
     std::cout << "[PASÓ] Inicialización de MGame correcta." << std::endl;
 
@@ -23,7 +23,7 @@ int main() {
     // 4. Verificaciones post-carga
 
     // Verificar cantidades globales
-    assert(game.getBusQuantity() == 2); // Creó 2 vehículos en total (el contador incrementa para ambos)
+    assert(game.getVehicleQuantity() == 2); // Creó 2 vehículos en total (el contador incrementa para ambos)
     assert(game.getPassengersQuantity() == 3); // 3 pasajeros en la cola
     std::cout << "[PASÓ] Contadores de vehículos y pasajeros correctos." << std::endl;
 

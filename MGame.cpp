@@ -11,7 +11,7 @@
 using namespace std;
 
 MGame::MGame(int level) : level(level) {
-    busQuantity = 0;
+    vehicleQuantity = 0;
     passengersQuantity = 0;
 }
 
@@ -45,12 +45,12 @@ void MGame::loadLevel(string filePath) {
         // Instanciar los objetos y agregarlos al vector de vehículos
         if (typeStr == "BUS") {
             // El constructor de Bus pide capacidad. Le pasamos 4 por defecto.
-            vehicles.push_back(new Bus(busQuantity, vehicleColor, {x, y}, vehicleDir, size, currentPassengers));
-            busQuantity++;
+            vehicles.push_back(new Bus(vehicleQuantity, vehicleColor, {x, y}, vehicleDir, size, currentPassengers));
+            vehicleQuantity++;
         } 
         else if (typeStr == "CAR") {
-            vehicles.push_back(new Car(busQuantity, vehicleColor, {x, y}, vehicleDir, currentPassengers));
-            busQuantity++; 
+            vehicles.push_back(new Car(vehicleQuantity, vehicleColor, {x, y}, vehicleDir, currentPassengers));
+            vehicleQuantity++; 
         }
     
     }
@@ -62,7 +62,7 @@ void MGame::loadLevel(string filePath) {
     }
 
     std::string levelStatus = "Nivel cargado exitosamente.\n";
-    cout << "Vehiculos creados: " << busQuantity << endl;
+    cout << "Vehiculos creados: " << vehicleQuantity << endl;
     cout << "Pasajeros en fila: " << passengersQuantity << endl;
 
     //Adds vehicle to grid
@@ -74,9 +74,9 @@ void MGame::loadLevel(string filePath) {
     file.close();
 }
 
-int MGame::getBusQuantity() const
+int MGame::getVehicleQuantity() const
 {
-    return busQuantity;
+    return vehicleQuantity;
 }
 
 int MGame::getPassengersQuantity() const

@@ -17,7 +17,7 @@ class MGame{
     //Atributos
     private: 
         int level;
-        int busQuantity;
+        int vehicleQuantity;
         int passengersQuantity;
         std::vector<Vehicle*> vehicles;
         std::vector<Passenger*> passengerQueue;
@@ -29,7 +29,7 @@ class MGame{
 
         //Getters
         int getLevel() const;
-        int getBusQuantity() const;
+        int getVehicleQuantity() const;
         int getPassengersQuantity() const;
         Grid& getGrid() const;
         std::vector<Vehicle*> getVehicles() const;

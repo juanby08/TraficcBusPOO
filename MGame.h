@@ -6,6 +6,7 @@
 #include "Passenger.h"
 #include "Bus.h"
 #include "Car.h"
+#include "Parkingzone.h"
 #include <string>
 #include <vector>
 #include <utility>
@@ -22,6 +23,7 @@ class MGame{
         std::vector<Vehicle*> vehicles;
         std::vector<Passenger*> passengerQueue;
         std::unique_ptr<Grid> grid;
+        std::unique_ptr<ParkingZone> parkingZone;
     
     //Métodos
     public:
@@ -32,6 +34,7 @@ class MGame{
         int getVehicleQuantity() const;
         int getPassengersQuantity() const;
         Grid& getGrid() const;
+        ParkingZone& getParkingZone() const;
         std::vector<Vehicle*> getVehicles() const;
         std::vector<Passenger*> getPassengers() const;
 

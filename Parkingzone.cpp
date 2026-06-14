@@ -1,45 +1,58 @@
 #include "ParkingZone.h"
-
-ParkingZone::ParkingZone() {
-    row = 0;
-    columns = 4;
-
-    cout << "ParkingZone creada." << endl;
-    cout << "Fila: " << row << endl;
-    cout << "Columnas: " << columns << endl;
-}
+#include <iostream>
 
 ParkingZone::ParkingZone(int auxRow, int auxColumns) {
     row = auxRow;
     columns = auxColumns;
 
-    cout << "ParkingZone creada." << endl;
-    cout << "Fila: " << row << endl;
-    cout << "Columnas: " << columns << endl;
+    parkedBuses.resize(columns, nullptr);
 }
 
+//metodo para revisar si parkingZone está vacio
 bool ParkingZone::columnFree() {
-    return parkedBuses.size() < columns;
+    for (int i = 0; i < parkedBuses.size(); i++) {
+        if (parkedBuses[i] == nullptr) { //verifica que haya espacio
+            return true;
+        }
+    }
+    return false;
 }
 
-bool ParkingZone::addBus(Bus* bus) {
-
-    if (!columnFree())
-        return false;
-
-    parkedBuses.push_back(bus);
-    return true;
+//Añadir vehiculo al parkingZone
+bool ParkingZone::addBus(Vehicle* vehicle) {
+    for (int i = 0; i < parkedBuses.size(); i++) {
+        if (parkedBuses[i] == nullptr) {
+            parkedBuses[i] = vehicle;
+            return true;
+        }
+    }
+    return false;
 }
 
-bool ParkingZone::removeBus(int busID) {
-
-    for (auto it = parkedBuses.begin(); it != parkedBuses.end(); ++it) {
-
-        if ((*it)->getID() == busID) {
-            parkedBuses.erase(it);
+//Quitar un vehículo al parkingZone
+bool ParkingZone::removeBus(int vehicleID) {
+    for (int i = 0; i < parkedBuses.size(); i++) {
+        //Si hay un vehiculo y ese coincide con el ID del que se necesita, se borra
+        if (parkedBuses[i] != nullptr && parkedBuses[i]->getID() == vehicleID) {
+            parkedBuses[i] = nullptr;
             return true;
         }
     }
 
     return false;
+}
+
+//solo para mostrar el test visual
+void ParkingZone::showParking() {
+    std::cout << "[ ";
+    for (int i = 0; i < parkedBuses.size(); i++) {
+        if (parkedBuses[i] == nullptr) {
+            std::cout << "Empty ";
+        }
+        else {
+            std::cout << parkedBuses[i]->getID() << " ";
+        }
+    }
+
+    std::cout << "]\n";
 }

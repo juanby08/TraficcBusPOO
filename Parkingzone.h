@@ -2,27 +2,24 @@
 #define PARKINGZONE_H
 
 #include <vector>
-#include "Passenger.h"
-#include "Bus.h"
-
-using namespace std;
+#include "Vehicle.h"
 
 class ParkingZone {
 private:
-    vector<Passenger> passengerQueue;
-    vector<Bus*> parkedBuses;
+    std::vector<Vehicle*> parkedBuses;
 
     int row;
     int columns;
 
 public:
-    ParkingZone();
-    ParkingZone(int auxRow, int auxColumns);
+    ParkingZone(int row, int columns);
 
     bool columnFree();
 
-    bool addBus(Bus* bus);
-    bool removeBus(int busID);
+    bool addBus(Vehicle* vehicle);
+    bool removeBus(int vehicleID);
+
+    void showParking();
 };
 
 #endif

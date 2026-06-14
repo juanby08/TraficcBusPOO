@@ -4,65 +4,101 @@
  - Anyela Lineth Cabrera Ordoñez | Código: 202540031| anyela.cabrera@correounivalle.edu.co
 */
 
-//#include "Game.h"
 #include "MGame.h"
-#include "Parser.h" 
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-//MGame::MGame() {}
+MGame::MGame(int level) : level(level) {
+    busQuantity = 0;
+    passengersQuantity = 0;
+}
 
 void MGame::loadLevel(string filePath) {
-    cout << "Cargando nivel " << filePath << "..." << endl;
-    // Abrir el archivo plano
+    std::string loading = "Cargando nivel " + filePath + "... \n";
+    // Open the text file containing the level information.
     ifstream file(filePath);
-    // Verificar que el archivo se abrió correctamente
+    // Condition to verify if the file was opened correctly
     if (!file.is_open()) {
-        cout << "Error: No se pudo abrir " << filePath << endl;
+        std::string error = "Error: No se pudo abrir " + filePath + "\n"; //Check SRP
         return;
     }
-    // Variables para almacenar temporalmente los datos del archivo
-    int row, columns;
-    file >> row >> columns; 
-    string typeStr, colorStr, dirStr;
-    int x, y, size;
+    // Temporal var to save information
+    int rows, columns;
+    file >> rows >> columns; 
+
+    //creates grid
+    grid = std::make_unique<Grid>(columns, rows);
+
+    string typeStr;
+    int x, y, size, capacity, currentPassengers, vehicleColor, vehicleDir, passengerColor;
 
     // Leer los vehículos hasta encontrar el "-"
     while (file >> typeStr && typeStr != "-") {
-        file >> colorStr >> x >> y >> dirStr >> size;
-        // Convertir los strings 
-        Color vehicleColor = Parser::stringToColor(colorStr);
-        Direction vehicleDir = Parser::stringToDirection(dirStr);
+        file >> vehicleColor >> x >> y >> vehicleDir >> size >> currentPassengers;
+
+        std::cout<<typeStr<<std::endl;
+
+        std::cout << vehicleColor << x << y << vehicleDir << size << currentPassengers;
 
         // Instanciar los objetos y agregarlos al vector de vehículos
         if (typeStr == "BUS") {
             // El constructor de Bus pide capacidad. Le pasamos 4 por defecto.
-            vehicles.push_back(new Bus(busQuantity, vehicleColor, {x, y}, vehicleDir, size, 4));
+            vehicles.push_back(new Bus(busQuantity, vehicleColor, {x, y}, vehicleDir, size, currentPassengers));
             busQuantity++;
         } 
         else if (typeStr == "CAR") {
-            vehicles.push_back(new Car(busQuantity, vehicleColor, {x, y}, vehicleDir));
+            vehicles.push_back(new Car(busQuantity, vehicleColor, {x, y}, vehicleDir, currentPassengers));
             busQuantity++; 
         }
+    
     }
 
-    
-    // Leer el "-" que separa los vehículos de la fila de pasajeros
-    string dummyStr; 
-    file >> dummyStr;
-
     // Bucle para leer la fila de pasajeros y guardarla en la cola
-    while (file >> colorStr) {
-        Color passengerColor = Parser::stringToColor(colorStr);
-        passengerQueue.push_back(passengerColor);
+    while (file >> passengerColor) {
+        passengerQueue.push_back(new Passenger(passengerColor));
         passengersQuantity++;
     }
 
-    cout << "Nivel cargado exitosamente." << endl;
+    std::string levelStatus = "Nivel cargado exitosamente.\n";
     cout << "Vehiculos creados: " << busQuantity << endl;
     cout << "Pasajeros en fila: " << passengersQuantity << endl;
 
+    //Adds vehicle to grid
+    for (auto vehicle: vehicles){
+        grid->addVehicle(*vehicle);
+    }
+    cout << "Nivel cargado exitosamente.2" << endl;
+
     file.close();
+}
+
+int MGame::getBusQuantity() const
+{
+    return busQuantity;
+}
+
+int MGame::getPassengersQuantity() const
+{
+    return passengersQuantity;
+}
+
+int MGame::getLevel() const
+{
+    return level;
+}
+
+Grid& MGame::getGrid() const
+{
+    return *grid;
+}
+
+std::vector<Vehicle*> MGame::getVehicles() const{
+    return vehicles;
+}
+
+
+std::vector<Passenger*> MGame::getPassengers() const{
+    return passengerQueue;
 }

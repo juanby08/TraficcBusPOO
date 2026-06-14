@@ -2,32 +2,38 @@
 #define MGAME_H
 
 #include "Vehicle.h"
+#include "Grid.h"
+#include "Passenger.h"
 #include "Bus.h"
 #include "Car.h"
 #include <string>
 #include <vector>
 #include <utility>
-//#include "Game.h"
+#include <memory>
 using namespace std;
 
 // Nombre Clase
 class MGame{
     //Atributos
     private: 
-        std::vector<Vehicles> vehicles;
-        std::vector<Passengers> passengers;
-        Grid* grid;
-        ParkingZone parkingZone;
+        int level;
+        int busQuantity;
+        int passengersQuantity;
+        std::vector<Vehicle*> vehicles;
+        std::vector<Passenger*> passengerQueue;
+        std::unique_ptr<Grid> grid;
     
     //Métodos
     public:
-        //MGame(); //constructor
-        
+        MGame(int level); //constructor
+
         //Getters
-        std::vector<Vehicles> getVehicles() const;
-        std::vector<Passengers> getPassengers() const;
-        Grid createBoard() const;
-        ParkingZone getParkingZone() const;
+        int getLevel() const;
+        int getBusQuantity() const;
+        int getPassengersQuantity() const;
+        Grid& getGrid() const;
+        std::vector<Vehicle*> getVehicles() const;
+        std::vector<Passenger*> getPassengers() const;
 
         // Método que recibe el nombre del archivo txt
         void loadLevel(string filePath);

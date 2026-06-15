@@ -5,6 +5,9 @@
 #include <string>
 #include <conio.h>
 
+//To play the game use the following command: 
+//g++ .\Vehicle.cpp .\Bus.cpp .\Car.cpp .\Grid.cpp .\MGame.cpp .\VGame.cpp .\CGame.cpp .\Parkingzone.cpp .\Passenger.cpp .\main.cpp -o juego
+
 int main() {
     bool exit = false;
 

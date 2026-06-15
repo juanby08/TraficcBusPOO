@@ -64,7 +64,6 @@ void testIsFullInitiallyFalse()
     std::cout << "[SUCCESS] " << "Test Vehicle isFull-False passed\n";
 }
 
-
 void testBoardPassenger()
 {
     Car car(101, 4, {0,0}, 4, 0);
@@ -83,10 +82,8 @@ void testBoardPassenger()
 
     assert(car.isFull());
 
-     std::cout << "[SUCCESS] " << "Test Vehicle board passengers passed\n";
+     std::cout << "[SUCCESS] " << "Test Vehicle board passenger passed\n";
 }
-
-
 
 int main()
 {

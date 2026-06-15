@@ -14,6 +14,7 @@
     std::vector<std::vector<char>> board;
 
     public: 
+    
     Grid(int columns,int rows);
     void addVehicle(const Vehicle& vehicle);
     bool checkPath(const Vehicle& vehicle);

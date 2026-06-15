@@ -45,7 +45,7 @@ void Grid::addVehicle(const Vehicle& vehicle){
 
     //Creating Vehicle body
     for (int i = 0; i < size - 1; i++){
-        // 48 + id funciona para digitos del 1 al 9
+        // 48 + id works with digits from 0 to 9
         board[location.first + i*dx][location.second + i*dy] = '0' + id; 
     }
 

@@ -80,53 +80,46 @@ void VGame::DisplayText(const std::string& text){
 void VGame::printParkingZone(MGame& game) {
     std::cout << "--- ZONA DE PARQUEO ---\n";
     
-    // Obtenemos el vector de vehículos parqueados
+    // Get Vehicle vector from Parking Zone.
     auto parkedBuses = game.getParkingZone().getParkedBuses(); 
 
     for (int i = 0; i < parkedBuses.size(); i++) {
         std::cout << "Espacio " << i + 1 << ": ";
         
         if (parkedBuses[i] == nullptr) {
-            // Si el puntero es nulo, el espacio está libre
+            // If there is a null pointer at vector index [i] then the spot is free.
             std::cout << "[ Vacio ]\n";
         } else {
-            // Extraemos el vehículo
-            Vehicle* v = parkedBuses[i];
+            // We get the vehicle and get the color
+            Vehicle* vehicle = parkedBuses[i];
             
-            // Reutilizamos nuestra función para obtener el código de color ANSI
-            std::string colorStr = getColorCode(v->getColor());
+            std::string colorStr = getColorCode(vehicle->getColor());
             
-            // Imprimimos con el formato solicitado: Tipo + ID + Pasajeros/Capacidad
-            // Nota: Nos aseguramos de envolver todo en el color correspondiente
+            //print using colorStr and ends reseting the string to default value.
             std::cout << colorStr << "[ " 
-                      << v->getType() << " " 
-                      << v->getID() 
+                      << vehicle->getType() << " " 
+                      << vehicle->getID() 
                       << " | Capacidad: " 
-                      << v->getCurrentPassengers() << "/" << v->getCapacity() 
+                      << vehicle->getCurrentPassengers() << "/" << vehicle->getCapacity() 
                       << " ]" << reset << "\n";
         }
     }
     std::cout << "\n";
 }
 
-// ---------------------------------------------------------
-// Método para imprimir la cola de pasajeros
-// ---------------------------------------------------------
+//Method to print passengerQueue
 void VGame::printPassengerQueue(MGame& game) {
     std::cout << "--- FILA DE PASAJEROS ---\n";
     
-    // Obtenemos la fila de pasajeros desde MGame
+    // Get passenger Queue from MGame
     auto queue = game.getPassengers(); 
 
     if (queue.empty()) {
         std::cout << "No hay pasajeros en la fila.\n";
     } else {
-        // Iteramos sobre el vector de pasajeros
         for (size_t i = 0; i < queue.size(); i++) {
-            // Extraemos el color de cada pasajero
+
             int pColor = queue[i]->getColor(); 
-            
-            // Imprimimos la palabra "Pasajero " + (índice + 1) aplicando su color
             std::cout << getColorCode(pColor) << "Pasajero " << (i + 1) << reset << "  ";
         }
         std::cout << "\n";

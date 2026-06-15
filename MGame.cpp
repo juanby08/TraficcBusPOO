@@ -77,12 +77,6 @@ void MGame::loadLevel(string filePath) {
         passengersQuantity++;
     }
 
-    // std::string levelStatus = "Nivel cargado exitosamente.\n";
-    // cout << "Vehiculos creados: " << vehicleQuantity << endl;
-    // cout << "Pasajeros en fila: " << passengersQuantity << endl;
-
-    cout << "Nivel cargado exitosamente.2" << endl;
-
     file.close();
 }
 

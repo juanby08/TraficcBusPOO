@@ -1,7 +1,7 @@
 #include "VGame.h"
 #include <iostream>
 
-// Traduce el entero del atributo color al código ANSI correspondiente
+// Translate int numColor into a color code ANSI that the console can use.
 std::string VGame::getColorCode(int colorNum) const {
     switch (colorNum) {
         case 1: return green;   
@@ -12,51 +12,46 @@ std::string VGame::getColorCode(int colorNum) const {
     }
 }
 
-// Devuelve el número de color correspondiente a una celda específica
+// Returns corresponding color int, checking if cell contains ID, head of the vehicle or a different character.
 int VGame::getVehicleColorAt(MGame& game, int r, int c, char cell) const {
     auto vehicles = game.getVehicles();
 
-    // CASO 1: Es el cuerpo del vehículo (un dígito de ID '0' a '9')
+    // If the cell contains the ID of the vehicle:
     if (cell >= '0' && cell <= '9') {
         int id = cell - '0';
-        if (id >= 0 && id < static_cast<int>(vehicles.size())) {
-            return vehicles[id]->getColor(); // Retorna el color del vehículo por su ID
+        
+        // Loop for each vehicle pointer in vehicles to compare ID, returns int Color. 
+        for (auto vehicle : vehicles){
+            if (vehicle->getID() == id){
+                return vehicle->getColor();
+            }
         }
     }
     
-    // CASO 2: Es la cabeza del vehículo ('^', 'v', '<', '>')
-    // Como la matriz no guarda el ID en la cabeza, calculamos matemáticamente dónde está la cabeza de cada vehículo
+    // If the cell contains a symbol representing the vehicle's head ('^', 'v', '<', '>')
+    // We use a method from grid to relate the head with the corresponding vehicle.
     if (cell == '^' || cell == 'v' || cell == '<' || cell == '>') {
         for (auto vehicle : vehicles) {
-            int direction = vehicle->getDirection();
-            int dx = 0, dy = 0;
+            auto [dx, dy, __] = Grid::getDirection(*vehicle);
             
-            // Replicamos la lógica de movimiento de Grid para hallar la orientación
-            switch (direction) {
-                case 1: dx = -1; break; // Up
-                case 2: dx = 1;  break; // Down
-                case 3: dy = -1; break; // Left
-                case 4: dy = 1;  break; // Right
-            }
-            
-            // Calculamos la coordenada exacta de la cabeza
             int headX = vehicle->getLocation().first + (vehicle->getSize() - 1) * dx;
             int headY = vehicle->getLocation().second + (vehicle->getSize() - 1) * dy;
 
-            // Si la cabeza evaluada coincide con la posición actual del mapa, encontramos el vehículo
+            // If the head found matches the position calculated, it gets painted with the vehicle corresponding color.
             if (headX == r && headY == c) {
                 return vehicle->getColor();
             }
         }
     }
-
-    return 0; // Retorna 0 si es un espacio vacío '.' sin color
+    // Returns 0 for any other character.
+    return 0; 
 }
 
 void VGame::printBoard(MGame& game) {
-    // Obtenemos el tablero dinámico del Grid actual
+    // Get board from MGame-Grid-GetBoard.
     std::vector<std::vector<char>> board = game.getGrid().getBoard();
 
+    // Loop over the board to get each cell's char
     for (int r = 0; r < static_cast<int>(board.size()); ++r) {
         for (int c = 0; c < static_cast<int>(board[r].size()); ++c) {
             char cell = board[r][c];
@@ -77,9 +72,9 @@ void VGame::printBoard(MGame& game) {
     std::cout << std::endl;
 }
 
-void VGame::DisplayText(const std::string& text)
-{
-    cout << text << endl;
+// General method to display text on screen.
+void VGame::DisplayText(const std::string& text){
+    std::cout << text << std::endl;
 }
 
 void VGame::printParkingZone(MGame& game) {

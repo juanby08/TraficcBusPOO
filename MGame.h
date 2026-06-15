@@ -11,7 +11,6 @@
 #include <vector>
 #include <utility>
 #include <memory>
-using namespace std;
 
 class MGame{
 
@@ -26,7 +25,8 @@ class MGame{
 
     public:
         MGame(int level);
-        void loadLevel(string filePath);
+        void loadLevel(std::string filePath);
+        void removeVehicle(int VehicleID);
 
         //Getters
         int getLevel() const;

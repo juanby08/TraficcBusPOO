@@ -86,12 +86,24 @@ void MGame::loadLevel(string filePath) {
     file.close();
 }
 
+void MGame::removeVehicle(int vehicleID) {
+    // Iterate over vehicles vector from first until last element.
+    for(auto i = vehicles.begin(); i != vehicles.end(); ++i){
+        // Dereference i iterator to get a vehicle pointer (Vehicle*), use -> operator to access getID method.
+        if((*i)->getID() == vehicleID){
+            // Takes the iterator and deletes de slot containing the Vehicle pointer.
+            vehicles.erase(i);
+            break;
+        }
+    };
+}
+
 int MGame::getVehicleQuantity() const{
     return vehicleQuantity;
 }
 
 int MGame::getPassengersQuantity() const{
-    return passengersQuantity;
+    return passengerQueue.size();
 }
 
 int MGame::getLevel() const{

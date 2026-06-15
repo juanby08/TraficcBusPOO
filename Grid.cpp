@@ -91,3 +91,8 @@ int Grid::getRows() const{
 int Grid::getColumns() const{
     return columns;
 }
+
+void Grid::clearBoard() {
+    //Reassigns all the values on the board to be '.'
+    board.assign(rows, std::vector<char>(columns, '.'));
+}

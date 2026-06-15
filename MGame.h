@@ -32,7 +32,7 @@ class MGame{
         int getLevel() const;
         int getVehicleQuantity() const;
         int getPassengersQuantity() const;
-        Grid& getGrid() const;
+        Grid& getGrid();
         ParkingZone& getParkingZone() const;
         std::vector<Vehicle*> getVehicles() const;
         std::vector<Passenger*>& getPassengers();

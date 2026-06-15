@@ -104,7 +104,7 @@ int MGame::getLevel() const{
     return level;
 }
 
-Grid& MGame::getGrid() const{
+Grid& MGame::getGrid() {
     return *grid;
 }
 

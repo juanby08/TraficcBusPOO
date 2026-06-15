@@ -1,17 +1,9 @@
 /*
-
-.cpp Creado solamente para testear el funcionamiento del constructor y las funciones de BUS.
-
-
-NO SE INCLUIRA EN LA ENTREGA FINAL.
-
 Comando para probar los tests: g++ Vehicle.cpp Bus.cpp Car.cpp BusTest.cpp -o BusTest
-
 */
 
 #include <cassert>
 #include <iostream>
-
 #include "Bus.h"
 #include "Car.h"
 

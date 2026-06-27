@@ -1,3 +1,13 @@
+// Curso: Fundamentos de Programacion Orientada a Objetos
+// Archivo: main.cpp
+// Autores:
+// - Juan Ricardo Riaños Horta | Código: 2537573 | juan.rianos@correounivalle.edu.co
+// - Carlos Anibal Ceron del Castillo | Código: 2537097 | carlos.ilich.ceron@correounivalle.edu.co
+// - Anyela Lineth Cabrera Ordoñez | Código: 2540031 | anyela.cabrera@correounivalle.edu.co
+// - Camilo Espinal León | Código: 2538740 | camilo.espinal@correounivalle.edu.co
+// - Juan José Peña Garcés | Código: 2538880 | juan.jose.pena@correounivalle.edu.co
+// Fecha: 27/06/2026
+
 #include "MGame.h"
 #include "VGame.h"
 #include "CGame.h"
@@ -5,8 +15,8 @@
 #include <string>
 #include <conio.h>
 
-//To play the game use the following command: 
-//g++ .\Vehicle.cpp .\Bus.cpp .\Car.cpp .\Grid.cpp .\MGame.cpp .\VGame.cpp .\CGame.cpp .\Parkingzone.cpp .\Passenger.cpp .\main.cpp -o juego
+// To play the game use the following command: 
+// g++ .\Vehicle.cpp .\Bus.cpp .\Car.cpp .\Grid.cpp .\MGame.cpp .\VGame.cpp .\CGame.cpp .\Parkingzone.cpp .\Passenger.cpp .\main.cpp -o juego
 
 int main() {
     bool exit = false;
@@ -16,10 +26,10 @@ int main() {
         VGame* display = new VGame();
 
         //Display Welcome Message
-        display ->DisplayText("=======================================\n");
-        display ->DisplayText("           -BUS PARKING GAME-          \n");
-        display ->DisplayText("=======================================\n");
-        display ->DisplayText("Selecciona un nivel (1, 2, 3) o 'Q' para salir:");
+        display -> DisplayText("=======================================\n");
+        display -> DisplayText("           -BUS PARKING GAME-          \n");
+        display -> DisplayText("=======================================\n");
+        display -> DisplayText("Selecciona un nivel (1, 2, 3) o 'Q' para salir:");
 
         char menuInput;
         std::cin >> menuInput;
@@ -45,7 +55,7 @@ int main() {
                 model->loadLevel(levelFile);
                 CGame controller(model, display);
 
-                // Call play method an wait for the return value
+                // Call play method and wait for the return value
 
                 int result = controller.play();
 

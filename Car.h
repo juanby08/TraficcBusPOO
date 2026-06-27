@@ -21,8 +21,6 @@
  * Colaboradores:
  *   - Vehicle - Clase Padre:
  *     * Hereda la estructura de atributos y metodos.
- *   - globaldefinitions:
- *     * Toma las estructuras de color, direccion y vehicletype.
  *
  * -----------------------------------------------------------------------------
  *

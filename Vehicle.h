@@ -24,8 +24,6 @@
  *     * Hereda el comportamiento de vehiculo.
  *   - Car - Clase Hija:
  *     * Hereda el comportamiento de Car. 
- *   - globaldefinitions:
- *     * Toma las estructuras de color, direccion y vehicletype.
  *
  * -----------------------------------------------------------------------------
  *

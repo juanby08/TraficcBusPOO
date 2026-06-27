@@ -52,21 +52,6 @@ bool ParkingZone::removeBus(int vehicleID) {
     return false;
 }
 
-//solo para mostrar el test visual
-void ParkingZone::showParking() {
-    std::cout << "[ ";
-    for (int i = 0; i < parkedBuses.size(); i++) {
-        if (parkedBuses[i] == nullptr) {
-            std::cout << "Empty ";
-        }
-        else {
-            std::cout << parkedBuses[i]->getID() << " ";
-        }
-    }
-
-    std::cout << "]\n";
-}
-
 std::vector<Vehicle*> ParkingZone::getParkedBuses() const{
     return parkedBuses;
 }

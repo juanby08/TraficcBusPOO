@@ -31,8 +31,6 @@
  *
  * -----------------------------------------------------------------------------
  *
- * @author 
- * @email 
  * @license GNU General Public License v3.0 (GPL)
  *
  * Este programa es software libre: puede redistribuirlo y/o modificarlo

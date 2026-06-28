@@ -63,6 +63,7 @@
     int rows;
     int columns;
     std::vector<std::vector<char>> board;
+    std::tuple<int,int,char> getDirection(const Vehicle& vehicle);
 
     public: 
     
@@ -75,7 +76,5 @@
     int getRows() const;
     int getColumns() const;
     void clearBoard();
-    static std::tuple<int,int,char> getDirection(const Vehicle& vehicle);
-
     };
 #endif // GRID_H

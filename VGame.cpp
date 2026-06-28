@@ -42,7 +42,27 @@ int VGame::getVehicleColorAt(MGame& game, int r, int c, char cell) const {
     // We use a method from grid to relate the head with the corresponding vehicle.
     if (cell == '^' || cell == 'v' || cell == '<' || cell == '>') {
         for (auto vehicle : vehicles) {
-            auto [dx, dy, __] = Grid::getDirection(*vehicle);
+
+            //Get direction and calculate vehicle head position
+            int direction = vehicle->getDirection();
+
+            int dx = 0;
+            int dy = 0;
+
+            switch (direction) {
+                case 1: // Up
+                    dx = -1;
+                    break;
+                case 2: // Down
+                    dx = 1;
+                    break;
+                case 3: // Left
+                    dy = -1;
+                    break;
+                case 4: // Right
+                    dy = 1;
+                    break;
+            }
             
             int headX = vehicle->getLocation().first + (vehicle->getSize() - 1) * dx;
             int headY = vehicle->getLocation().second + (vehicle->getSize() - 1) * dy;

@@ -72,7 +72,7 @@ public:
     VGame() = default;
 
     void printBoard(MGame& game);
-    void displayText(const std::string& text);
+    void DisplayText(const std::string& text);
     void printParkingZone(MGame& game);
     void printPassengerQueue(MGame& game);
 };

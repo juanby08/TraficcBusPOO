@@ -83,7 +83,7 @@ void VGame::printBoard(MGame& game) {
 }
 
 // General method to display text on screen.
-void VGame::displayText(const std::string& text){
+void VGame::DisplayText(const std::string& text){
     std::cout << text << std::endl;
 }
 

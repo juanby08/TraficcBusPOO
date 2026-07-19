@@ -54,9 +54,25 @@ char CGame::handleInput(){
 
         // If target vehicle is not null, check if it can move.
         if (targetVehicle != nullptr) {
-            // If path is clear add bus to the parking zone vector of vehicles, remove the vechile from the grid vehicle. 
-            // Update grid to reflect the changes.
+            // If path is clear, move the vehicle step by step
             if (level->getGrid().checkPath(*targetVehicle)){
+                // Move the vehicle step by step until it exits the grid
+                while (level->getGrid().moveVehicle(*targetVehicle)) {
+                    // Clear grid and redraw
+                    updateGrid();
+                    
+                    // Clear console and display
+                    system("cls");
+                    display->printParkingZone(*level);
+                    display->printPassengerQueue(*level);
+                    display->printBoard(*level);
+                    display->DisplayText("\n");
+                    
+                    // Small delay for animation
+                    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                }
+                
+                // Vehicle has reached the end, add to parking zone
                 level->getParkingZone().addBus(targetVehicle);
                 level->removeVehicle(targetVehicle->getID());
                 updateGrid();

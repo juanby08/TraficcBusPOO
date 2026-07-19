@@ -76,5 +76,7 @@
     int getRows() const;
     int getColumns() const;
     void clearBoard();
+    bool moveVehicle(Vehicle& vehicle);
+
     };
 #endif // GRID_H

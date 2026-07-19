@@ -86,6 +86,13 @@
         int getCapacity() const;
         int getCurrentPassengers() const;
 
+        int getPosX();
+        int getPosY();
+
+        void setLocation(std::pair<int,int> newLocation);
+        void setPosX(int x);
+        void setPosY(int y);
+
         bool boardPassenger();
         bool isFull();
 

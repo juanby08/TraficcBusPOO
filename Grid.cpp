@@ -9,6 +9,8 @@
 // Fecha: 27/06/2026
 
 #include "Grid.h"
+#include <iostream>
+#include <tuple>
 
 Grid::Grid(int columns, int rows): columns(columns), rows(rows){
     board.resize(rows, std::vector<char>(columns, '.'));
@@ -105,4 +107,26 @@ int Grid::getColumns() const{
 void Grid::clearBoard() {
     //Reassigns all the values on the board to be '.'
     board.assign(rows, std::vector<char>(columns, '.'));
+}
+
+bool Grid::moveVehicle(Vehicle& vehicle){
+    auto [dx, dy, symbol] = getDirection(vehicle);
+    
+    std::pair<int,int> currentPos = vehicle.getLocation();
+    int size = vehicle.getSize();
+    
+    // Calculate next head position
+    int nextHeadX = currentPos.first + size * dx;
+    int nextHeadY = currentPos.second + size * dy;
+    
+    // Check if the next head position is still within bounds
+    if (nextHeadX < 0 || nextHeadX >= rows || nextHeadY < 0 || nextHeadY >= columns) {
+        return false; // Vehicle has reached the end
+    }
+    
+    // Move vehicle one step
+    vehicle.setPosX(currentPos.first + dx);
+    vehicle.setPosY(currentPos.second + dy);
+    
+    return true; // Vehicle moved successfully
 }

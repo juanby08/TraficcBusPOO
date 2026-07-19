@@ -61,6 +61,26 @@ bool Vehicle::isFull(){
     return currentPassengers == capacity;
 }
 
+int Vehicle::getPosX(){
+    return location.first;
+}
+
+int Vehicle::getPosY(){
+    return location.second;
+}
+
+void Vehicle::setLocation(std::pair<int,int> newLocation){
+    location = newLocation;
+}
+
+void Vehicle::setPosX(int x){
+    location.first = x;
+}
+
+void Vehicle::setPosY(int y){
+    location.second = y;
+}
+
 bool Vehicle::boardPassenger(){
     if(isFull()){
         return false;

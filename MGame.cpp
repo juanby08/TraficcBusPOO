@@ -136,13 +136,16 @@ void MGame::Save(std::string filePath) const {
 }
 
 void MGame::removeVehicle(int vehicleID) {
+    parkingZone->removeBus(vehicleID);
     // Iterate over vehicles vector from first until last element.
     for(auto i = vehicles.begin(); i != vehicles.end(); ++i){
         // Dereference i iterator to get a vehicle pointer (Vehicle*), use -> operator to access getID method.
         if((*i)->getID() == vehicleID){
+            delete *i;
             // Takes the iterator and deletes de slot containing the Vehicle pointer.
             vehicles.erase(i);
-            break;
+            vehicleQuantity--;
+            return;
         }
     };
 }

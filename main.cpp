@@ -30,6 +30,7 @@ int main() {
         display -> DisplayText("           -BUS PARKING GAME-          \n");
         display -> DisplayText("=======================================\n");
         display -> DisplayText("Selecciona un nivel (1, 2, 3) o 'Q' para salir:");
+        display -> DisplayText("Selecciona '4' para cargar partida guardada\n");
 
         char menuInput;
         std::cin >> menuInput;
@@ -43,7 +44,7 @@ int main() {
         }
 
         // Check if menuInput is a number:
-        if (menuInput >= '1' && menuInput <= '3') {
+        if (menuInput >= '1' && menuInput <= '4') {
             int levelId = menuInput - '0';
             // Create string to access level
             std::string levelFile = "Level" + std::to_string(levelId) + ".txt";

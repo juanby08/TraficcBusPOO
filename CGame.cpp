@@ -29,11 +29,17 @@ void CGame::updateGrid(){
 // Method to handle the user input while in game
 char CGame::handleInput(){
     display->DisplayText("\nIngresa un numero para mover el vehiculo (1-9): \n");
-    display->DisplayText("Presiona 'R' para reiniciar, 'Q' para salir: \n");
+    display->DisplayText("Presiona 'R' para reiniciar, 'Q' para salir, 'G' para guardar: \n");
 
     char userInput;
     std::cin >> userInput;
 
+    if (tolower(userInput) == 'g') {
+        Save();
+        display->DisplayText("\nPartida guardada en Level4.txt\n");
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    return userInput;
+    }
     // Check if user wants to quit or restart the level.
     if(tolower(userInput) == 'q' || tolower(userInput) == 'r') {
         return tolower(userInput);
@@ -72,6 +78,10 @@ char CGame::handleInput(){
     return userInput;
 }
 
+
+void CGame::Save() {
+    level->Save("Level4.txt");
+}
     
 // Method to check if boarding is possible
 bool CGame::boarding() {

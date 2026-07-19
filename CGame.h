@@ -71,7 +71,7 @@ class CGame {
         char handleInput();
     
     public:
-
+        void Save();
         CGame(MGame* level, VGame* display);
         void updateGrid();
         int play();

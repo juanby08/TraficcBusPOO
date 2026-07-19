@@ -25,7 +25,7 @@ void MGame::loadLevel(string filePath) {
     // Open the text file containing the level information.
     ifstream file(filePath);
     // Condition to verify if the file was opened correctly
-    if (!file.is_open()) {
+    if (!file.is_open()  || file.peek() == std::ifstream::traits_type::eof()) {
         std::string error = "Error: No se pudo abrir " + filePath + "\n";
         return;
     }
@@ -81,6 +81,57 @@ void MGame::loadLevel(string filePath) {
         passengersQuantity++;
     }
 
+    file.close();
+}
+void MGame::Save(std::string filePath) const {
+    ofstream file(filePath);
+ 
+    if (!file.is_open()) {
+        return;
+    }
+ 
+    // First Line: Rows, Columns and Parking Spots.
+    file << grid->getRows() << " " << grid->getColumns() << " " << parkingZone->getParkedBuses().size() << "\n";
+ 
+    // Vehicles that are currently on the board (isParked = 0).
+    for (auto vehicle : vehicles) {
+        std::string type = (dynamic_cast<Bus*>(vehicle) != nullptr) ? "BUS" : "CAR";
+        file << type << " " << vehicle->getColor() << " "
+             << vehicle->getLocation().first << " "
+             << vehicle->getLocation().second << " "
+             << vehicle->getDirection() << " "
+             << vehicle->getSize() << " "
+             << vehicle->getCurrentPassengers() << " "
+             << 0 << "\n";
+    }
+ 
+    // Vehicles that are currently parked (isParked = 1).
+    for (auto vehicle : parkingZone->getParkedBuses()) {
+        if (vehicle != nullptr) {
+            std::string type = (dynamic_cast<Bus*>(vehicle) != nullptr) ? "BUS" : "CAR";
+ 
+            file << type << " "
+                 << vehicle->getColor() << " "
+                 << vehicle->getLocation().first << " "
+                 << vehicle->getLocation().second << " "
+                 << vehicle->getDirection() << " "
+                 << vehicle->getSize() << " "
+                 << vehicle->getCurrentPassengers() << " "
+                 << 1 << "\n";
+        }
+    }
+ 
+    file << "-\n";
+ 
+    // Row of passengers in the queue, separated by spaces.
+    for (size_t i = 0; i < passengerQueue.size(); i++) {
+        file << passengerQueue[i]->getColor();
+        if (i != passengerQueue.size() - 1) {
+            file << " ";
+        }
+    }
+    file << "\n";
+ 
     file.close();
 }
 

@@ -83,6 +83,7 @@ class MGame{
         void removeVehicle(int VehicleID);
 
         //Getters
+        void Save(std::string filePath) const;
         int getLevel() const;
         int getVehicleQuantity() const;
         int getPassengersQuantity() const;

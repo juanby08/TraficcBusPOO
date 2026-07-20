@@ -128,20 +128,19 @@ bool Grid::moveVehicle(Vehicle& vehicle) {
     std::pair<int,int> currentPos = vehicle.getLocation();
     int size = vehicle.getSize();
 
-    // Mover una casilla
+    // Move one square
     vehicle.setPosX(currentPos.first + dx);
     vehicle.setPosY(currentPos.second + dy);
 
-    // Nueva posición de la cola
+    // New queue position
     int tailX = vehicle.getLocation().first;
     int tailY = vehicle.getLocation().second;
 
-    // Nueva posición de la cabeza
+    // New head position
     int headX = tailX + (size - 1) * dx;
     int headY = tailY + (size - 1) * dy;
 
-    // Si alguna parte del vehículo sigue dentro del tablero,
-    // continuamos la animación.
+    // If any part of the vehicle remains inside the dashboard, we continue the animation..
     bool bodyVisible =
         (tailX >= 0 && tailX < rows &&
          tailY >= 0 && tailY < columns);

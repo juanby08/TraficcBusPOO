@@ -6,32 +6,33 @@
 // - Anyela Lineth Cabrera Ordoñez | Código: 2540031 | anyela.cabrera@correounivalle.edu.co
 // - Camilo Espinal León | Código: 2538740 | camilo.espinal@correounivalle.edu.co
 // - Juan José Peña Garcés | Código: 2538880 | juan.jose.pena@correounivalle.edu.co
-// Fecha: 27/06/2026
+// Fecha: 19/06/2026
+// comando g++ testsPassengers.cpp Passenger.cpp -o testsPassengers
 
 #include <cassert>
 #include <iostream>
 
 #include "Passenger.h"
 
-// Verifica que el constructor guarde correctamente el color
+// Verify that the constructor correctly stores the color.
 void testPassengerColor() {
     Passenger passenger(3);
     assert(passenger.getColor() == 3);
 }
 
-// Verifica otro color para asegurarnos
+// Check another color to be sure.
 void testPassengerColor1() {
     Passenger passenger(1);
     assert(passenger.getColor() == 1);
 }
 
-// Verifica otro color para asegurarnos
+// Check another color to be sure.
 void testPassengerColor2() {
     Passenger passenger(2);
     assert(passenger.getColor() == 2);
 }
 
-// Verifica otro color para asegurarnos
+// Check another color to be sure.
 void testPassengerColor4() {
     Passenger passenger(4);
     assert(passenger.getColor() == 4);

@@ -6,7 +6,8 @@
 // - Anyela Lineth Cabrera Ordoñez | Código: 2540031 | anyela.cabrera@correounivalle.edu.co
 // - Camilo Espinal León | Código: 2538740 | camilo.espinal@correounivalle.edu.co
 // - Juan José Peña Garcés | Código: 2538880 | juan.jose.pena@correounivalle.edu.co
-// Fecha: 27/06/2026
+// Fecha: 19/06/2026
+// comando para ejecutar test: g++ testsParkingZone.cpp ParkingZone.cpp Vehicle.cpp Bus.cpp Car.cpp -o testParkingZone
 
 #include <cassert>
 #include <iostream>
@@ -14,16 +15,16 @@
 #include "ParkingZone.h"
 #include "Bus.h"
 
-//Crear zona de parqueo
+//Create a parking zone
 void testColumnFree() {
     ParkingZone zone(1, 2);
     assert(zone.columnFree() == true);
 }
 
-//Test para 2 metodos: Añadir y sacar un bus
+//Test for 2 methods: Adding and removing a bus
 void testColumnFreeAfterRemovingBus() {
     ParkingZone zone(1, 1);
-    Bus* bus = new Bus( //se crea un bus
+    Bus* bus = new Bus(
         1,
         1,
         {0,0},
@@ -31,11 +32,17 @@ void testColumnFreeAfterRemovingBus() {
         3,
         20
     );
-    zone.addBus(bus);
-    assert(zone.columnFree() == false); //el parkingZone esta lleno
-    zone.removeBus(1); //que busque el bus con ID 1
-    assert(zone.columnFree() == true); //ahora el parkingZone esta vacio
-    delete bus;
+    // Add the bus to the parking zone.
+    assert(zone.addBus(bus));
+
+    // Parking zone should now be full.
+    assert(zone.columnFree() == false);
+
+    // Remove the bus.
+    assert(zone.removeBus(1));
+
+    // Parking zone should now have a free space.
+    assert(zone.columnFree() == true);
 }
 
 int main() {

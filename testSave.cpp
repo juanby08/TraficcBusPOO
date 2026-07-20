@@ -6,7 +6,7 @@
 // - Anyela Lineth Cabrera Ordoñez | Código: 2540031 | anyela.cabrera@correounivalle.edu.co
 // - Camilo Espinal León | Código: 2538740 | camilo.espinal@correounivalle.edu.co
 // - Juan José Peña Garcés | Código: 2538880 | juan.jose.pena@correounivalle.edu.co
-// Fecha: 27/06/2026
+// Fecha: 19/06/2026
 
 #include <cassert>
 #include <fstream>
@@ -19,7 +19,7 @@
 
 const std::string LEVEL_FILE = "Level3.txt";
 
-//Lee todas las lineas no vacias de un archivo.
+//Reads all non-empty lines from a file.
 std::vector<std::string> readLines(const std::string& path) {
     std::vector<std::string> lines;
     std::ifstream file(path);
@@ -30,12 +30,12 @@ std::vector<std::string> readLines(const std::string& path) {
     return lines;
 }
 
-// Test 1: al guardar Level3.txt sin modificaciones, el encabezado (rows, columns, parkingSpots) y la fila de pasajeros se preservan.
+// Test 1: When saving Level3.txt without modifications, the header (rows, columns, parkingSpots) and the passenger row are preserved.
 void test_headerAndPassengersFromLevel3() {
     MGame model(3);
     model.loadLevel(LEVEL_FILE);
 
-    // Level3.txt trae 4 BUS + 6 CAR = 10 vehiculos, y 16 pasajeros.
+    // Level3.txt contains 4 buses + 6 cars = 10 vehicles, and 16 passengers..
     assert(model.getVehicleQuantity() == 10);
     assert(model.getPassengersQuantity() == 16);
 
@@ -44,16 +44,16 @@ void test_headerAndPassengersFromLevel3() {
     std::vector<std::string> lines = readLines("test_level3.txt");
     assert(!lines.empty());
 
-    // --- Encabezado ---
+    // --- Heading ---
     std::istringstream headerStream(lines[0]);
     int rows, columns, parkingSpots;
     headerStream >> rows >> columns >> parkingSpots;
 
     assert(rows == 10);
     assert(columns == 10);
-    assert(parkingSpots == 4); // capacidad total del parqueadero
+    assert(parkingSpots == 4); // total parking capacity
 
-    // --- Fila de pasajeros (ultima linea) ---
+    // --- Passenger row (last line) ---
     std::string lastLine = lines.back();
     std::istringstream passengerStream(lastLine);
     std::vector<int> savedColors;
@@ -69,7 +69,7 @@ void test_headerAndPassengersFromLevel3() {
 }
 
 // ---------------------------------------------------------------------------
-// Test 2: si un vehiculo termina parqueado, al recargar el archivo guardado la cantidad de vehiculos deberia mantenerse igual.
+// Test 2: If a vehicle ends up parked, the number of vehicles should remain the same upon reloading the saved file.
 
 void test_parkedVehicleDuplicationBug() {
     MGame model(3);
@@ -78,7 +78,7 @@ void test_parkedVehicleDuplicationBug() {
     int originalVehicleQuantity = model.getVehicleQuantity();
     assert(originalVehicleQuantity == 10);
 
-    // Tomamos el BUS con ID 0 (el primero cargado desde Level3.txt).
+    // Take the BUS with ID 0 (the first one loaded from Level3.txt).
     Vehicle* targetVehicle = nullptr;
     for (Vehicle* v : model.getVehicles()) {
         if (v->getID() == 0) {
@@ -88,11 +88,11 @@ void test_parkedVehicleDuplicationBug() {
     }
     assert(targetVehicle != nullptr);
 
-    // Lo movemos hasta que salga del tablero, igual que CGame::handleInput.
+    // Move it until it leaves the board, just like in CGame::handleInput.
     while (model.getGrid().moveVehicle(*targetVehicle)) {
     }
 
-    // Lo parqueamos, igual que hace CGame tras la salida del vehiculo.
+    // Park it, just as CGame does after the vehicle is exited.
     model.getParkingZone().addBus(targetVehicle);
 
     model.Save("test_output_parked.txt");
@@ -105,7 +105,7 @@ void test_parkedVehicleDuplicationBug() {
     std::cout << "[OK] El vehiculo parqueado no se duplica en el archivo guardado" << std::endl;
 }
 //-----------------------------------------------------------------------------------------------------
-// Main de los tests
+// Test main method
 int main() {
     std::cout << "=== Ejecutando tests para MGame::Save (usando Level3.txt) ===\n\n";
 

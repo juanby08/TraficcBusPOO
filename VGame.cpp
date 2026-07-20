@@ -6,7 +6,7 @@
 // - Anyela Lineth Cabrera Ordoñez | Código: 2540031 | anyela.cabrera@correounivalle.edu.co
 // - Camilo Espinal León | Código: 2538740 | camilo.espinal@correounivalle.edu.co
 // - Juan José Peña Garcés | Código: 2538880 | juan.jose.pena@correounivalle.edu.co
-// Fecha: 27/06/2026
+// Fecha: 19/06/2026
 
 #include "VGame.h"
 #include <iostream>
@@ -86,14 +86,14 @@ void VGame::printBoard(MGame& game) {
         for (int c = 0; c < static_cast<int>(board[r].size()); ++c) {
             char cell = board[r][c];
             
-            // Buscamos si la celda le pertenece a algún vehículo y qué color tiene
+            // We check whether the cell belongs to a vehicle and what color it is.
             int colorNum = getVehicleColorAt(game, r, c, cell);
             
             if (colorNum != 0) {
-                // Imprime el caracter envolviéndolo en su código de color y luego resetea la terminal
+                // Print the character wrapped in its color code and then reset the terminal.
                 std::cout << getColorCode(colorNum) << cell << reset << ' ';
             } else {
-                // Si es un camino vacío '.', se imprime de forma normal
+                // If it is an empty path '.', it is printed normally.
                 std::cout << cell << ' ';
             }
         }

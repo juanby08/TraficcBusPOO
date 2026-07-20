@@ -18,17 +18,17 @@ ParkingZone::ParkingZone(int auxRow, int auxColumns) {
     parkedBuses.resize(columns, nullptr);
 }
 
-//metodo para revisar si parkingZone está vacio
+// Method to check if parkingZone is empty.
 bool ParkingZone::columnFree() {
     for (int i = 0; i < parkedBuses.size(); i++) {
-        if (parkedBuses[i] == nullptr) { //verifica que haya espacio
+        if (parkedBuses[i] == nullptr) { //Check that there is space.
             return true;
         }
     }
     return false;
 }
 
-//Añadir vehiculo al parkingZone
+//Add vehicle to parkingZone
 bool ParkingZone::addBus(Vehicle* vehicle) {
     for (int i = 0; i < parkedBuses.size(); i++) {
         if (parkedBuses[i] == nullptr) {
@@ -39,10 +39,10 @@ bool ParkingZone::addBus(Vehicle* vehicle) {
     return false;
 }
 
-//Quitar un vehículo al parkingZone
+// Remove a vehicle from parkingZone
 bool ParkingZone::removeBus(int vehicleID) {
     for (int i = 0; i < parkedBuses.size(); i++) {
-        //Si hay un vehiculo y ese coincide con el ID del que se necesita, se borra
+        // If there is a vehicle and it matches the ID of the required one, it is deleted.
         if (parkedBuses[i] != nullptr && parkedBuses[i]->getID() == vehicleID) {
             parkedBuses[i] = nullptr;
             return true;

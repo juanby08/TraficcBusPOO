@@ -48,23 +48,35 @@ std::tuple<int,int,char> Grid::getDirection(const Vehicle& vehicle){
 
 void Grid::addVehicle(const Vehicle& vehicle){
 
-    //def variables
     int id = vehicle.getID();
     std::pair<int,int> location = vehicle.getLocation();
     int size = vehicle.getSize();
 
     auto [dx, dy, symbol] = getDirection(vehicle);
 
-    //Creating Vehicle body
+    // Dibujar cuerpo
     for (int i = 0; i < size - 1; i++){
-        // 48 + id works with digits from 0 to 9
-        board[location.first + i*dx][location.second + i*dy] = '0' + id; 
+
+        int x = location.first + i * dx;
+        int y = location.second + i * dy;
+
+        if (x >= 0 && x < rows &&
+            y >= 0 && y < columns){
+
+            board[x][y] = '0' + id;
+        }
     }
 
-    //Creating Vehicle head
-    board[location.first + (size-1) * dx][location.second + (size-1) * dy] = symbol;
-        
+    // Dibujar cabeza
+    int headX = location.first + (size - 1) * dx;
+    int headY = location.second + (size - 1) * dy;
+
+    if (headX >= 0 && headX < rows &&
+        headY >= 0 && headY < columns){
+
+        board[headX][headY] = symbol;
     }
+}
 
 bool Grid::checkPath(const Vehicle& vehicle){
     //def variables
@@ -109,24 +121,34 @@ void Grid::clearBoard() {
     board.assign(rows, std::vector<char>(columns, '.'));
 }
 
-bool Grid::moveVehicle(Vehicle& vehicle){
+bool Grid::moveVehicle(Vehicle& vehicle) {
+
     auto [dx, dy, symbol] = getDirection(vehicle);
-    
+
     std::pair<int,int> currentPos = vehicle.getLocation();
     int size = vehicle.getSize();
-    
-    // Calculate next head position
-    int nextHeadX = currentPos.first + size * dx;
-    int nextHeadY = currentPos.second + size * dy;
-    
-    // Check if the next head position is still within bounds
-    if (nextHeadX < 0 || nextHeadX >= rows || nextHeadY < 0 || nextHeadY >= columns) {
-        return false; // Vehicle has reached the end
-    }
-    
-    // Move vehicle one step
+
+    // Mover una casilla
     vehicle.setPosX(currentPos.first + dx);
     vehicle.setPosY(currentPos.second + dy);
-    
-    return true; // Vehicle moved successfully
+
+    // Nueva posición de la cola
+    int tailX = vehicle.getLocation().first;
+    int tailY = vehicle.getLocation().second;
+
+    // Nueva posición de la cabeza
+    int headX = tailX + (size - 1) * dx;
+    int headY = tailY + (size - 1) * dy;
+
+    // Si alguna parte del vehículo sigue dentro del tablero,
+    // continuamos la animación.
+    bool bodyVisible =
+        (tailX >= 0 && tailX < rows &&
+         tailY >= 0 && tailY < columns);
+
+    bool headVisible =
+        (headX >= 0 && headX < rows &&
+         headY >= 0 && headY < columns);
+
+    return bodyVisible || headVisible;
 }

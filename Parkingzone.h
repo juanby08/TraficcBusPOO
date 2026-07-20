@@ -1,5 +1,5 @@
 /**
- * @file Parkingzone.h
+ * @file ParkingZone.h
  * @brief Definición de la clase ParkingZone.
  *
  * @details

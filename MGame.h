@@ -60,7 +60,7 @@
 #include "Passenger.h"
 #include "Bus.h"
 #include "Car.h"
-#include "Parkingzone.h"
+#include "ParkingZone.h"
 #include <string>
 #include <vector>
 #include <utility>

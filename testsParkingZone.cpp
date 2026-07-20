@@ -32,9 +32,9 @@ void testColumnFreeAfterRemovingBus() {
         20
     );
     zone.addBus(bus);
-    assert(zone.columnFree() == false); //el parkingzone esta lleno
+    assert(zone.columnFree() == false); //el parkingZone esta lleno
     zone.removeBus(1); //que busque el bus con ID 1
-    assert(zone.columnFree() == true); //ahora el parkingzone esta vacio
+    assert(zone.columnFree() == true); //ahora el parkingZone esta vacio
     delete bus;
 }
 

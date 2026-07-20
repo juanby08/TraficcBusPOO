@@ -1,5 +1,5 @@
 // Curso: Fundamentos de Programacion Orientada a Objetos
-// Archivo: Parkingzone.cpp
+// Archivo: ParkingZone.cpp
 // Autores:
 // - Juan Ricardo Riaños Horta | Código: 2537573 | juan.rianos@correounivalle.edu.co
 // - Carlos Anibal Ceron del Castillo | Código: 2537097 | carlos.ilich.ceron@correounivalle.edu.co

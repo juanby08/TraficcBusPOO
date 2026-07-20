@@ -84,7 +84,7 @@ void MGame::loadLevel(string filePath) {
     file.close();
 }
 void MGame::Save(std::string filePath) const {
-    ofstream file(filePath);
+ofstream file(filePath);
  
     if (!file.is_open()) {
         return;
@@ -93,8 +93,24 @@ void MGame::Save(std::string filePath) const {
     // First Line: Rows, Columns and Parking Spots.
     file << grid->getRows() << " " << grid->getColumns() << " " << parkingZone->getParkedBuses().size() << "\n";
  
+    // Get the parked vehicles once, and avoid writing them twice.
+    auto parkedBuses = parkingZone->getParkedBuses();
+ 
     // Vehicles that are currently on the board (isParked = 0).
     for (auto vehicle : vehicles) {
+        // Skip vehicles that are actually parked; they get written below
+        // (in the parkedBuses loop) with isParked = 1 instead.
+        bool isCurrentlyParked = false;
+        for (auto parked : parkedBuses) {
+            if (parked != nullptr && parked->getID() == vehicle->getID()) {
+                isCurrentlyParked = true;
+                break;
+            }
+        }
+        if (isCurrentlyParked) {
+            continue;
+        }
+ 
         std::string type = (dynamic_cast<Bus*>(vehicle) != nullptr) ? "BUS" : "CAR";
         file << type << " " << vehicle->getColor() << " "
              << vehicle->getLocation().first << " "
@@ -106,7 +122,7 @@ void MGame::Save(std::string filePath) const {
     }
  
     // Vehicles that are currently parked (isParked = 1).
-    for (auto vehicle : parkingZone->getParkedBuses()) {
+    for (auto vehicle : parkedBuses) {
         if (vehicle != nullptr) {
             std::string type = (dynamic_cast<Bus*>(vehicle) != nullptr) ? "BUS" : "CAR";
  

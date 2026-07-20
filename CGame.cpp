@@ -31,7 +31,7 @@ void CGame::updateGrid()
 // Method to handle the user input while in game
 char CGame::handleInput()
 {
-    display->DisplayText("\nIngresa un numero para mover el vehiculo (1-9): \n");
+    display->DisplayText("\nIngresa un numero para mover el vehiculo (0-9): \n");
     display->DisplayText("Presiona 'R' para reiniciar, 'Q' para salir, 'G' para guardar: \n");
 
     char userInput;
